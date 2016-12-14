@@ -1,0 +1,14 @@
+
+dist/
+tmp/
+.tmp/
+/dev
+config/local.js
+running-service.json
+app.js
+
+/node_modules
+proxy/proxy.js
+
+*.log
+
