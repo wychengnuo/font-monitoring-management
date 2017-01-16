@@ -3,26 +3,16 @@ const Handlebars = require('handlebars');
 const fs = require('fs');
 
 module.exports = async (ctx, next) => {
-    
-    var layoutsPath = __dirname + '/src' + ctx.req.url + '/views/layouts/index.html';
 
-    var viewsPath = __dirname + '/src' + ctx.req.url + '/partials/index.html';
-
-    var viewFile = fs.readFileSync(viewsPath, "utf8");
-
-    var layoutFile = fs.readFileSync(layoutsPath, "utf8");
-
-    var layoutTemplate = Handlebars.compile(layoutFile);
-
-    var viewTemplate = Handlebars.compile(viewFile);
+    var tmpl = require('./dirame_file')(ctx, fs, Handlebars);
 
     var result = {};
 
-    var data = '';
+    var data = ctx.locals;
 
-    result.body = viewTemplate(ctx.locals);
+    result.body = tmpl.viewTemplate(data);
 
-    ctx.body = layoutTemplate(result);
+    ctx.body = tmpl.layoutTemplate(result);
     
     await next();
 

@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const compose = require('koa-compose');
+const fetch = require('whatwg-fetch');
 
 const router = new Router({
     prefix: '/login'
@@ -7,9 +8,10 @@ const router = new Router({
 
 router
     .get('/', async (ctx, next) => {
+        
         ctx.locals = {
-            name: "lalala"
-        }
+            name: 'lalala'
+        };
         await next();
     });
 

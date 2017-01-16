@@ -8,7 +8,12 @@ glob
   .sync(`${__dirname}/src/**/router.js`)
   .filter((file) => (process.env.NODE_ENV !== 'production') || (path.dirname(file).indexOf('test') !== -1))
   .forEach((file) => {
-      routers.push(require(file)());
+    try {
+      if (typeof require(file)() === 'function')
+          routers.push(require(file)());
+    } catch (error) {
+          
+    }
   });
 
 module.exports = () => compose(routers);
