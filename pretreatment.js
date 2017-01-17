@@ -1,10 +1,7 @@
 
-const Handlebars = require('handlebars');
-const fs = require('fs');
-
 module.exports = async (ctx, next) => {
 
-    var tmpl = require('./dirame_file')(ctx, fs, Handlebars);
+    var tmpl = require('./dirame_file')(ctx);
 
     var result = {};
 
@@ -14,8 +11,8 @@ module.exports = async (ctx, next) => {
 
     ctx.body = tmpl.layoutTemplate(result);
     
-    await next();
-
+    if(next !== undefined)
+        await next();
 };
 
 

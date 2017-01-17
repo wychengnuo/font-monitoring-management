@@ -1,12 +1,29 @@
-module.exports = function (ctx, fs, Handlebars) {
 
-    var path = __dirname + '/src' + ctx.req.url;
+const Handlebars = require('handlebars');
+const fs = require('fs');
 
-    var tmpl = {};
+module.exports = function (ctx) {
+    
+    var path = ctx.path, tmpl = {}, viewsPath = '', layoutsPath = '';
 
-    var layoutsPath = path + '/views/layouts/index.html';
 
-    var viewsPath = path + '/partials/index.html';
+    /**
+     * ctx.err_path 判断报错页面转发
+     */
+
+    if (ctx.err_path) {
+
+        layoutsPath = ctx.err_pub_path + '/login/views/layouts/index.html';
+
+        viewsPath = ctx.err_path + ctx.status + '.html';
+        
+    } else {
+
+        layoutsPath = path + '/views/layouts/index.html';
+
+        viewsPath = path + '/partials/index.html';
+
+    }
 
     var viewFile = fs.readFileSync(viewsPath, 'utf8');
 
@@ -15,7 +32,7 @@ module.exports = function (ctx, fs, Handlebars) {
     var layoutTemplate = Handlebars.compile(layoutFile);
 
     var viewTemplate = Handlebars.compile(viewFile);
-
+    
     tmpl.layoutTemplate = layoutTemplate;
 
     tmpl.viewTemplate = viewTemplate;

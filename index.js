@@ -8,20 +8,24 @@ const router = require('./router');
 // app.locals.ENV = env;
 // app.locals.ENV_DEVELOPMENT = env == 'test';
 
-
-
 app.use(router());
 
-app.use(async(ctx, next) => {
+app.use(async (ctx, next) => {
+  
   try {
+
     await next(); // next is now a function
+
   } catch (err) {
-    //console.log(ctx);
-    ctx.body = {
-      message: err.message
-    };
-    //ctx.locals.viewFile = path.join('error/views/',err.status + '');
-    ctx.status = err.status || 500;
+    ctx.locals = {};
+    ctx.status = err.status || ctx.res.statusCode || 500;
+    
+    ctx.err_path = path.join(__dirname, '/src/error/views/');
+    ctx.err_pub_path = path.join(__dirname, '/src');
+    // ctx.locals = {   //本身的报错信息，可以不传，走自定义
+    //         message: err.message
+    // };  
+    require('./pretreatment')(ctx);
   }
 });
 
