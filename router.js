@@ -10,7 +10,7 @@ glob
   .forEach((file) => {
       try {
           if (typeof require(file)() === 'function')
-              routers.push;(require(file)());
+              routers.push(require(file)());
       } catch (error) {
           console.log(error);
       }

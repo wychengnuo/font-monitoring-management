@@ -8,9 +8,7 @@ const router = new Router({
 });
 
 router
-    .get('/', async (ctx, next) => {
-
-        ctx.path = path.resolve(__dirname, '..');
+    .get('/', async(ctx, next) => {
         
         ctx.locals = {
             name: 'lalala'

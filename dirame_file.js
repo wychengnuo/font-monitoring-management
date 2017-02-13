@@ -1,28 +1,28 @@
-
 const Handlebars = require('handlebars');
 const fs = require('fs');
+const papa = require('path');
 
 module.exports = function (ctx) {
-    
-    var path = ctx.path, tmpl = {}, viewsPath = '', layoutsPath = '';
 
+    var path = ctx.path,
+        tmpl = {},
+        viewsPath = '',
+        layoutsPath = '';
 
     /**
      * ctx.err_path 判断报错页面转发
      */
 
-    if (ctx.err_path) {
+    layoutsPath = papa.join(__dirname, 'src', '/login/views/layouts/index.html');
 
-        layoutsPath = ctx.err_pub_path + '/login/views/layouts/index.html';
-
-        viewsPath = ctx.err_path + ctx.status + '.html';
+    if (ctx.errLog == 'true') {
+        
+        viewsPath = papa.join(__dirname, '/src/error/views/', ctx.status + '.html');
         
     } else {
 
-        layoutsPath = path + '/views/layouts/index.html';
-
-        viewsPath = path + '/partials/index.html';
-
+        viewsPath = papa.join(__dirname, 'src', path + '/partials/index.html');
+        
     }
 
     var viewFile = fs.readFileSync(viewsPath, 'utf8');
@@ -32,7 +32,7 @@ module.exports = function (ctx) {
     var layoutTemplate = Handlebars.compile(layoutFile);
 
     var viewTemplate = Handlebars.compile(viewFile);
-    
+
     tmpl.layoutTemplate = layoutTemplate;
 
     tmpl.viewTemplate = viewTemplate;
