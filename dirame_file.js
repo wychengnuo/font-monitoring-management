@@ -13,7 +13,7 @@ module.exports = function (ctx) {
      * ctx.err_path 判断报错页面转发
      */
 
-    layoutsPath = papa.join(__dirname, 'src', '/login/views/layouts/index.html');
+    layoutsPath = papa.join(__dirname, 'src', '/layouts/index.html');
 
     if (ctx.errLog == 'true') {
         
