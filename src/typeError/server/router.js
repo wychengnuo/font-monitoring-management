@@ -2,14 +2,14 @@ const Router = require('koa-router');
 const compose = require('koa-compose');
 
 const router = new Router({
-    prefix: '/login'
+    prefix: '/typeError'
 });
 
 router
     .get('/', async(ctx, next) => {
-        
         ctx.locals = {
-            isTrue: false
+            isTrue: true,
+            typeTitle: true
         };
         await next();
     });

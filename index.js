@@ -1,26 +1,40 @@
 const koa = require('koa');
 const app = new koa();
-const path = require('path');
 const router = require('./router');
+const convert = require('koa-convert');
+const statics = require('koa-static');
+const proxy = require('koa-proxy2');
+
 
 app.use(router());
 
-app.use(async (ctx, next) => {
-  
+app.use(proxy({
+    proxy_rules: [
+        {
+            proxy_location: /api/,
+            proxy_pass: 'http://10.129.142.39:3001',
+            proxy_micro_service: false,
+            proxy_merge_mode: false
+        }
+    ]
+}));
+
+app.use(convert(statics((__dirname + '/src/public/'))));
+app.use(require('./pretreatment'));
+app.use(async(ctx, next) => {
+
     try {
         await next(); // next is now a function
     } catch (err) {
-        
         ctx.locals = {};
         ctx.status = err.status || ctx.res.statusCode || 500;
         ctx.errLog = 'true';
-
-        require('./pretreatment')(ctx);
+        require('./pretreatment')(ctx);  
     }
 });
 
 
-app.use(require('./pretreatment'));
+
 
 var server = app.listen(3000, function () {
     var host = server.address().address;

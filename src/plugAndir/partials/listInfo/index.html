@@ -1,0 +1,109 @@
+<div id="page-wrapper">
+    <link href="/plugAndir/index.css" rel="stylesheet">
+    <script src="/plugAndir/listInfo.js"></script>
+    <script src="/js/bootstrap-paginator.js"></script>
+    <div class="header">
+        <h3 class="page-header">
+            {{data}}<a href="javascript:history.back(-1)" style="font-size:14px;margin-left:20px">返回上一页</a>
+        </h3>
+    </div>
+    <div id="page-inner">
+        <p class="title">国美金融 - 插件管理列表 <span class="add">增加插件</span></p>
+        <div class="plug list">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <td>
+                        插件名称
+                    </td>
+                    <td>
+                        插件版本
+                    </td>
+                    <td>
+                        app版本号
+                    </td>
+                    <td>
+                        渠道号
+                    </td>
+                    <td>
+                        系统版本号
+                    </td>
+                    <td>
+                        时间
+                    </td>
+                    <td>
+                        描述
+                    </td>
+                    <td>
+                        编辑
+                    </td>
+                </thead>
+                 </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="mask">
+                <div class="posi comfri">
+                    <h3>插件编辑</h3>
+                    <from class="box">
+                        <button class="sure">确定</button>
+                        <button class="cancel">取消</button>
+                    </from>
+                </div>
+                <!-- 上传-->
+                <div class="posi upload">
+                    <h3>新增app插件</h3>
+                    <form id="form" class="box" method="post" action="http://10.129.142.39:3001/api/setPlugListInfo"  enctype="multipart/form-data">
+                        <label class="file">
+                            <input type="file" name="file" multiple=“multiple”><button type="button">选择文件</button>
+                        </label>
+                        <div class="showFileName"></div>
+                        <label class="area">
+                            更新内容：
+                            <textarea name="textarea" minlength="3"></textarea>
+                        </label>
+                        <label class="radio">
+                            <label class="radio"><input checked="checked" type="radio"  name="optionsRadios" onclick="hiddenDiv(1)" value="1" />全部 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input onclick="hiddenDiv(2)" type="radio" name="optionsRadios" value="2" />条件</label>
+                        </label>
+                        <label class="submit d1">
+                            <input type="text" class="form-control" name="version" placeholder="请输入app版本号" id="version"/>
+                        </label>
+                        <label class="submit d1">
+                            <input type="text" class="form-control" name="channl" placeholder="请输入渠道号" id="channl"/>
+                        </label>
+                        <label class="submit d1">
+                            <input type="text" class="form-control" name="systemVer" placeholder="请输入系统版本号" id="channl"/>
+                        </label>
+                        <label class="submit d1">
+                            <input type="text" class="form-control" name="appVer" placeholder="请输入插件版本号" id="appVer"/>
+                        </label>
+                        <label class="submit">
+                            <button class="btn btn-success" type="submit" >确定</button>
+                            <span class="btn btn-success cancel">取消</span>
+                        </label>
+                        <input type="hidden" value="false" name="isDisabis" />
+                        <input type="hidden" value="false" name="isEnabis" />
+                        <input type="hidden" value="" id="name" name="name" />
+                    </form>
+                </div>
+            </div>
+             <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                           
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="pagination pagination-sm" id='pageUl'>
+            </ul>
+            <div class="zwsj" style="display:none">
+                暂无数据
+            </div>
+        </div>
+    </div>
+</div>

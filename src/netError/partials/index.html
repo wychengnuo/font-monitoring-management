@@ -1,0 +1,64 @@
+
+<div id="page-wrapper">
+    <script src="/js/bootstrap-paginator.js"></script>
+    <script src="/netError/index.js"></script>
+    <style>
+
+        .ss {
+            padding: 30px;
+        }
+
+        table, th, td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+        .title {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            background: #337ab7;
+            color: #fff;
+            border-radius: 2px;
+            border: 1px solid #337ab7;
+            position: relative;
+        }
+
+        .ss a {
+            margin-bottom: 20px;
+        }
+
+        p {
+            padding: 0;
+        }
+
+        .date {
+            background: #fff;
+            padding: 10px;
+        }
+
+        .date>table {
+            border: 1px solid #ddd !important;
+        }
+
+        .pagination {
+            margin: 0;
+            float: right;
+        }
+
+    </style>
+    <div class="header">
+        <h3 class="page-header">
+            接口错误信息展示
+        </h3>
+    </div>
+    <div id="page-inner">
+        <div class="row">
+          <p class="title">类型介绍(method:请求类型，originalUrl:接口地址, status:接口状态码，t: 接口返回时间，（msg = false: 接口错误信息）)</p>
+            <div id="dates" class='date panel'></div>
+            <ul class="pagination pagination-sm" id='pageUl'>
+            </ul>
+        </div>
+    </div>
+</div>

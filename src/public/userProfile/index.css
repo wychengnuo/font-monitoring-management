@@ -1,0 +1,30 @@
+.page-iner {
+    background: #fff;
+    padding: 20px;
+}
+
+.page-iner .form-group {
+    overflow: hidden;
+}
+
+.page-iner .row {
+    width: 50%;
+}
+
+.page-iner .control-label {
+    text-align: right;
+    margin-bottom: 0;
+    padding-top: 10px;
+    float: left;
+    width: 16.66666667%;
+}
+
+.form-control[readonly], .form-control[disabled] {
+    background-color: #eeeeee;
+    opacity: 1;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #54565b;
+    border: 1px solid #e7e9ed;
+    border-radius: 3px;
+} 

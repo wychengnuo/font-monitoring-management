@@ -4,7 +4,7 @@ const papa = require('path');
 
 module.exports = function (ctx) {
 
-    var path = ctx.path,
+    let path = ctx.path,
         tmpl = {},
         viewsPath = '',
         layoutsPath = '';
@@ -20,18 +20,29 @@ module.exports = function (ctx) {
         viewsPath = papa.join(__dirname, '/src/error/views/', ctx.status + '.html');
         
     } else {
-
-        viewsPath = papa.join(__dirname, 'src', path + '/partials/index.html');
-        
+        let vp = ctx.path.replace(/^(?!{-})\//, '').split('/');
+        let status = 404;
+        if (vp.length !== 2) {
+            viewsPath = papa.join(__dirname, '/src/error/views/', status + '.html');
+        }
+        if (vp.length > 1) {
+            viewsPath = papa.join(__dirname, 'src/', vp[0] + '/partials/' + vp[1] + '/index.html');
+        } else {
+            viewsPath = papa.join(__dirname, 'src', path + '/partials/index.html');
+        }
     }
 
-    var viewFile = fs.readFileSync(viewsPath, 'utf8');
+    /**
+     * 使用Handlebars.compile 解析页面
+     */
 
-    var layoutFile = fs.readFileSync(layoutsPath, 'utf8');
+    const viewFile = fs.readFileSync(viewsPath, 'utf8');
 
-    var layoutTemplate = Handlebars.compile(layoutFile);
+    const layoutFile = fs.readFileSync(layoutsPath, 'utf8');
 
-    var viewTemplate = Handlebars.compile(viewFile);
+    const layoutTemplate = Handlebars.compile(layoutFile);
+
+    const viewTemplate = Handlebars.compile(viewFile);
 
     tmpl.layoutTemplate = layoutTemplate;
 

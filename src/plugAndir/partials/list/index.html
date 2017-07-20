@@ -1,0 +1,84 @@
+<div id="page-wrapper">
+    <!--<script src="/plugAndir/index.js"></script>-->
+    <script src="/plugAndir/list.js"></script>
+    <script src="/js/jquery.form.js"></script>
+    <link href="/plugAndir/index.css" rel="stylesheet">
+    <div class="header">
+        <h3 class="page-header">
+            插件化项目 - <span style="font-size:18px;">{{title}} </span> <a href="javascript:history.back(-1)" style="font-size:14px;margin-left:20px">返回上一页</a>
+        </h3>
+    </div>
+    <div id="page-inner">
+        <p class="title ">{{title}} - 插件管理列表 <span class="add">增加插件</span></p>
+        <div class="plug list">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <td>
+                        模块名称
+                    </td>
+                    <td>
+                        模块版本
+                    </td>
+                    <td>
+                        时间
+                    </td>
+                    <td>
+                        描述
+                    </td>
+                    <td>
+                        编辑
+                    </td>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="mask">
+                <!-- 上传-->
+                <div class="posi upload">
+                    <h3>增加插件</h3>
+                    <form role="form" id="plugForm" class="box form-horizontal">
+                        <div class="form-group" style="margin-top:10px;">
+                            <label for="firstname" class="col-sm-4 control-label">插件名称</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="plugName" id="plugName" placeholder="请输入插件名称">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label for="firstname" class="col-sm-4 control-label">插件版本</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" name="version" id="version" placeholder="请输入插件版本号">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label for="firstname" class="col-sm-4 control-label">插件描述</label>
+                            <div class="col-sm-7">
+                                <textarea class="form-control" id="describe" name="describe" rows="3" style="resize:none" placeholder="请输入插件描述"></textarea>
+                            </div>
+                        </div>
+
+                        <input type="hidden" name="category" id="category" />
+
+                        <label class="submit">
+                            <span class="btn btn-success" id="submit">确定</span>
+                            <span class="btn btn-success cancel">取消</span>
+                        </label>
+                    </form>
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body"></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zwsj" style="display:none">
+                暂无数据
+            </div>
+        </div>
+    </div>
+</div>
