@@ -24,7 +24,7 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (data) {
-                if (data.success && data.data.length) {
+                if (data.success) {
                     $('.mask, .center').hide();
                     getPlug();
                 } else {
