@@ -12,7 +12,7 @@ app.use(proxy({
     proxy_rules: [
         {
             proxy_location: /api/,
-            proxy_pass: 'http://10.129.142.39:3001',
+            proxy_pass: 'http://127.0.0.1:3002',
             proxy_micro_service: false,
             proxy_merge_mode: false
         }
@@ -36,7 +36,7 @@ app.use(async(ctx, next) => {
 
 
 
-var server = app.listen(3000, function () {
+var server = app.listen(3001, function () {
     var host = server.address().address;
     var port = server.address().port;
 
