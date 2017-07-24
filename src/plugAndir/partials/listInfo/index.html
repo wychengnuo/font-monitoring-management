@@ -16,7 +16,10 @@
                         插件名称
                     </td>
                     <td>
-                        插件版本
+                        插件版本号
+                    </td>
+                    <td>
+                        minPluginVer
                     </td>
                     <td>
                         app版本号
@@ -57,6 +60,10 @@
                             <input type="file" name="file" multiple=“multiple”><button type="button">选择文件</button>
                         </label>
                         <div class="showFileName"></div>
+                        <label class="submit">
+                            <input type="text" class="form-control" name="plugVersion" placeholder="请输入插件版本号" id="plugVersion"/>
+                        </label>
+                        <br />
                         <label class="area">
                             更新内容：
                             <textarea name="textarea" minlength="3"></textarea>
@@ -74,14 +81,13 @@
                             <input type="text" class="form-control" name="systemVer" placeholder="请输入系统版本号" id="channl"/>
                         </label>
                         <label class="submit d1">
-                            <input type="text" class="form-control" name="appVer" placeholder="请输入插件版本号" id="appVer"/>
+                            <input type="text" class="form-control" name="appVer" placeholder="请输入可用插件版本号" id="appVer"/>
                         </label>
                         <label class="submit">
                             <button class="btn btn-success" type="submit" >确定</button>
                             <span class="btn btn-success cancel">取消</span>
                         </label>
-                        <input type="hidden" value="false" name="isDisabis" />
-                        <input type="hidden" value="false" name="isEnabis" />
+                        <input type="hidden" value="false" name="isEnable" />
                         <input type="hidden" value="" id="name" name="name" />
                     </form>
                 </div>

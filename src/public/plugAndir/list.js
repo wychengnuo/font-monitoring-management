@@ -33,9 +33,8 @@ $(function () {
 
     $('#submit').on('click', function () {
         var plugName = $('#plugName').val();
-        var version = $('#version').val();
         var describe = $('#describe').val();
-        if (plugName && version && describe) {
+        if (plugName && describe) {
             $('#plugForm').ajaxSubmit(options);
         } else {
             $('.modal-body').html('失败');
@@ -72,7 +71,6 @@ function getPlugList() {
                     var a = JSON.parse(o);
                     tr += '<tr>';
                     tr += '<td>' + a.plugName + '</td>';
-                    tr += '<td>' + a.version + '</td>';
                     tr += '<td>' + a.time + '</td>';
                     tr += '<td>' + a.describe + '</td>';
                     tr += '<td><span class="update btn btn-success"><a href="/plugAndir/listInfo?name=' + a.plugName + '"style="color:#fff;">编辑</a></span><span class="btn btn-danger" onclick="delPlug(\'' + a.plugName + '\')" style="margin-left:10px">删除</span></td>';

@@ -51,9 +51,11 @@ function getPlugList() {
                     var systemVer = a.systemVer ? a.systemVer : '所有';
                     var appVer = a.appVer ? a.appVer : '所有';
                     var version = a.version ? a.version : '所有';
+                    var plugVer = a.plugVer ? a.plugVer : '所有';
 
                     tr += '<tr>';
                     tr += '<td>' + a.plugName + '</td>';
+                    tr += '<td>' + plugVer + '</td>';
                     tr += '<td>' + appVer + '</td>';
                     tr += '<td>' + version + '</td>';
                     tr += '<td>' + channl + '</td>';
@@ -107,9 +109,11 @@ function getPlugList() {
                                         var systemVer = a.systemVer ? a.systemVer : '所有';
                                         var appVer = a.appVer ? a.appVer : '所有';
                                         var version = a.version ? a.version : '所有';
+                                        var plugVer = a.plugVer ? a.plugVer : '所有';
 
                                         tr += '<tr>';
                                         tr += '<td>' + a.plugName + '</td>';
+                                        tr += '<td>' + plugVer + '</td>';
                                         tr += '<td>' + appVer + '</td>';
                                         tr += '<td>' + version + '</td>';
                                         tr += '<td>' + channl + '</td>';
@@ -130,12 +134,12 @@ function getPlugList() {
             } else {
                 $('table tbody').html('');
                 $('#pageUl').hide();
-                $('.modal-body').html('暂无数据');
-                $('#myModal').modal({
-                    keyboard: true,
-                    show: true
-                });
-                $('.zwsj').show();
+                // $('.modal-body').html('暂无数据');
+                // $('#myModal').modal({
+                //     keyboard: true,
+                //     show: true
+                // });
+                // $('.zwsj').show();
             }
         },
         error: function () {

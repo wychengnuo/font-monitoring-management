@@ -110,7 +110,7 @@ $(function () {
             }
         },
         error: function (err) {
-            // alert('内部服务错误');
+            alert('内部服务错误');
         }
     });
     var arr;
@@ -126,7 +126,7 @@ $(function () {
             }
         },
         error: function (err) {
-            // alert('内部服务错误');
+            alert('内部服务错误');
         }
     });
 

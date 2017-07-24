@@ -103,8 +103,8 @@
 .plug .mask .upload {
     display: none;
     width: 300px;
-    max-height: 470px;
-    height: 280px;
+    max-height: 490px;
+    height: 340px;
 }
 .plug .mask .uploadHeight {
     height: 100%;
