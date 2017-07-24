@@ -4,7 +4,10 @@
   "description": "Template rendering middleware for koa",
   "main": "lib/index.js",
   "scripts": {
-    "start": "node --harmony-async-await index.js"
+    "start": "NODE_ENV=production PORT=3000 pm2 start app.js -i 1 --name font-monitoring-management",
+    "restart": "pm2 reload font-monitoring-management",
+    "stop": "pm2 stop font-monitoring-management",
+    "delete": "pm2 delete font-monitoring-management"
   },
   "dependencies": {
     "debug": "^2.1.3",
