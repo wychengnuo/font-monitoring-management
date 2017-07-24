@@ -28,7 +28,7 @@ $(document).ready(function () {
                     $('.mask, .center').hide();
                     getPlug();
                 } else {
-                    alert(data.msg);
+                    console.log(data.msg);
                 }
             },
             error: function () {
@@ -69,7 +69,7 @@ function getPlug() {
                 });
                 $('#list').html(li);   
             } else {
-                alert(data.msg);
+                console.log(data.msg);
             }
         },
         error: function () {

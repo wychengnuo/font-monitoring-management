@@ -112,7 +112,7 @@ function delPlug(str) {
             plugName: str
         },
         success: function (data) {
-            alert(data.msg);
+            console.log(data.msg);
             getPlugList();
         },
         error: function (data) {

@@ -21,6 +21,8 @@ app.use(proxy({
 
 app.use(convert(statics((__dirname + '/src/public/'))));
 app.use(require('./pretreatment'));
+
+
 app.use(async(ctx, next) => {
 
     try {

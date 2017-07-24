@@ -15,11 +15,11 @@ $(document).ready(function () {
                         alert('登录成功');
                         window.location.href = '/index';
                     } else {
-                        alert(data.msg);
+                        console.log(data.msg);
                     }
                 },
                 error: function (err) { 
-                    alert('内部服务错误');
+                    // alert('内部服务错误');
                 }
             });
         }
