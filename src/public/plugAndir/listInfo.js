@@ -51,7 +51,7 @@ function getPlugList() {
                     var systemVer = a.systemVer ? a.systemVer : '所有';
                     var appVer = a.appVer ? a.appVer : '所有';
                     var version = a.version ? a.version : '所有';
-                    var plugVer = a.plugVer ? a.plugVer : '所有';
+                    var plugVer = a.plugVersion ? a.plugVersion : '所有';
 
                     tr += '<tr>';
                     tr += '<td>' + a.plugName + '</td>';
@@ -108,8 +108,8 @@ function getPlugList() {
                                         var channl = a.channl ? a.channl : '所有';
                                         var systemVer = a.systemVer ? a.systemVer : '所有';
                                         var appVer = a.appVer ? a.appVer : '所有';
-                                        var version = a.version ? a.version : '所有';
-                                        var plugVer = a.plugVer ? a.plugVer : '所有';
+                                        var version = a.version ? a.version : '所有';                               
+                                        var plugVer = a.plugVersion ? a.plugVersion : '所有';
 
                                         tr += '<tr>';
                                         tr += '<td>' + a.plugName + '</td>';
