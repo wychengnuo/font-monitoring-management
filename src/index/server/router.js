@@ -5,6 +5,10 @@ const router = new Router();
 
 router
     .get('/', async (ctx, next) => {
+        ctx.locals = {
+            isTrue: true,
+            indexTitle: true
+        };
         ctx.redirect('/index');
     })    
     .get('/index', async(ctx, next) => {
