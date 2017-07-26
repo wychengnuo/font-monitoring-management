@@ -10,7 +10,7 @@ $(function () {
         if (filePath) {
             var arr = filePath.split('\\');
             var fileName = arr[arr.length - 1];
-            $('.showFileName').html(fileName);
+            alert(fileName);
         } else {
             $('.showFileName').html('');
             alert('您未上传文件，或者您上传文件类型有误');

@@ -19,7 +19,7 @@
                         插件版本号
                     </td>
                     <td>
-                        minPluginVer
+                        强制升级
                     </td>
                     <td>
                         app版本号
@@ -40,7 +40,7 @@
                         编辑
                     </td>
                 </thead>
-                 </thead>
+                </thead>
                 <tbody>
                 </tbody>
             </table>
@@ -55,36 +55,53 @@
                 <!-- 上传-->
                 <div class="posi upload">
                     <h3>新增app插件</h3>
-                    <form id="form" class="box" method="post" action="http://127.0.0.1:3002/api/setPlugListInfo"  enctype="multipart/form-data">
-                        <label class="file">
-                            <input type="file" name="file" multiple=“multiple”><button type="button">选择文件</button>
-                        </label>
-                        <div class="showFileName"></div>
+                    <form id="form" class="box" method="post" action="http://127.0.0.1:3002/api/setPlugListInfo" enctype="multipart/form-data">
                         <label class="submit">
+                            <span>选择文件</span>
+                            <dl class="file">
+                                <input type="file" name="file" multiple="multiple">点击这里上传文件
+                            </dl>
+                        </label>
+                        <label class="submit">
+                            <span>版本号：</span>
                             <input type="text" class="form-control" name="plugVersion" placeholder="请输入插件版本号" id="plugVersion"/>
                         </label>
                         <br />
                         <label class="area">
-                            更新内容：
+                            <span>更新内容：</span>
                             <textarea name="textarea" minlength="3"></textarea>
                         </label>
                         <label class="radio">
-                            <label class="radio"><input checked="checked" type="radio"  name="optionsRadios" onclick="hiddenDiv(1)" value="0" />全部 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input onclick="hiddenDiv(2)" type="radio" name="optionsRadios" value="1" />条件</label>
+                            <span>强制升级：</span>
+                            <label class="isRadio">
+                                <dl><input checked="checked" type="radio"  name="appVer" value="0" />是 </dl>
+                                <dl><input type="radio" name="appVer" value="1" />否</dl>    
+                            </label>
+                        </label>
+                        <label class="radio">
+                            <span>下载条件：</span>
+                            <label class="isRadio">
+                                <dl><input checked="checked" type="radio"  name="optionsRadios" onclick="hiddenDiv(1)" value="0" />全部</dl>
+                                <dl><input onclick="hiddenDiv(2)" type="radio" name="optionsRadios" value="1" />条件</dl>    
+                            </label>
                         </label>
                         <label class="submit d1">
+                            <span>app版本号：</span>
                             <input type="text" class="form-control" name="version" placeholder="请输入app版本号" id="version"/>
                         </label>
                         <label class="submit d1">
+                            <span>渠道号：</span>
                             <input type="text" class="form-control" name="channl" placeholder="请输入渠道号" id="channl"/>
                         </label>
                         <label class="submit d1">
+                            <span>系统版本号：</span>
                             <input type="text" class="form-control" name="systemVer" placeholder="请输入系统版本号" id="channl"/>
                         </label>
-                        <label class="submit d1">
+                        <!-- <label class="submit d1">
                             <input type="text" class="form-control" name="appVer" placeholder="请输入可用插件版本号" id="appVer"/>
-                        </label>
+                        </label> -->
                         <label class="submit">
-                            <button class="btn btn-success" type="submit" >确定</button>
+                            <button class="btn btn-success button" type="submit" >确定</button>
                             <span class="btn btn-success cancel">取消</span>
                         </label>
                         <input type="hidden" value="false" name="isEnable" />
@@ -92,12 +109,12 @@
                     </form>
                 </div>
             </div>
-             <!-- 模态框（Modal） -->
+            <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                           
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
