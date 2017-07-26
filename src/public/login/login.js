@@ -13,7 +13,7 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data.success) {
                         alert('登录成功');
-                        window.location.href = '/index?name=' + data.data.name;
+                        window.location.href = '/index';
                     } else {
                         console.log(data.msg);
                     }
