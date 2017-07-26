@@ -102,10 +102,11 @@
 
 .plug .mask .upload {
     display: none;
-    width: 300px;
+    width: 360px;
     max-height: 490px;
     height: 340px;
 }
+
 .plug .mask .uploadHeight {
     height: 100%;
 }
@@ -158,9 +159,11 @@
     display: inline-block;
 }
 
-.plug .mask .upload .box button {
+.plug .mask .upload .box .button {
     border: none;
     padding: 7px 15px;
+    width: 84px;
+    margin-left: 48px;
 }
 
 .title {
@@ -215,28 +218,22 @@ td {
 
 .list .file {
     position: relative;
-    display: block;
-    background: #337ab7;
+    display: inline-block;
+    background: #D0EEFF;
     border: 1px solid #99D3F5;
     border-radius: 4px;
     overflow: hidden;
     color: #1E88C7;
     text-decoration: none;
     text-indent: 0;
-    line-height: 20px;
-    overflow: hidden;
-    margin: 10px auto 0;
-    border-radius: inherit;
     width: 180px;
+    height: 30px;
+    margin-right: 0;
+    line-height: 30px;
     text-align: center;
 }
 
-.upload .box {
-    overflow: hidden;
-    display: block;
-}
-
-.file input {
+.list .file input {
     position: absolute;
     font-size: 100px;
     right: 0;
@@ -244,24 +241,53 @@ td {
     opacity: 0;
 }
 
-.file>button {
-    color: #fff;
-    background: none;
-    border: none;
-}
-
-.file:hover {
+.list .file:hover {
     background: #AADFFD;
     border-color: #78C3F3;
     color: #004974;
-    cursor: pointer;
     text-decoration: none;
 }
 
-.area,.radio,.submit {
+.upload .box {
+    overflow: hidden;
+    display: block;
+}
+
+.upload .box label span {
+    float: left;
+    display: block;
+    margin-top: 8px;
+    width: 84px;
+}
+
+.upload .box label .cancel {
+    margin: 0 0 0 20px;
+}
+
+.upload .box label input {
     width: 180px;
+}
+
+.area,
+.radio,
+.submit {
+    width: 280px;
     margin: 0 auto;
     display: block;
+    overflow: hidden;
+}
+
+dl {
+    width: 30px;
+    display: block;
+    float: left;
+    margin-right: 38px;
+    margin-bottom: 0;
+}
+
+.isRadio {
+    width: 180px;
+    margin-top: 7px;
 }
 
 .area>textarea {
@@ -274,6 +300,7 @@ td {
 
 .submit {
     margin-top: 12px;
+    overflow: hidden;
 }
 
 .radio span {
@@ -281,6 +308,6 @@ td {
 }
 
 .radio span input[type=radio] {
-    margin: 0 6px 0 0; 
-    position: initial; 
+    margin: 0 6px 0 0;
+    position: initial;
 }

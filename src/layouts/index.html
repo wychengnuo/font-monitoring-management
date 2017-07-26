@@ -25,8 +25,36 @@
                         alert('内部服务错误');
                     }
                 });
+
             });
+
+            if(!localStorage.getItem('data')){
+
+                $.ajax({
+                    url: '/api/userInfo',
+                    type: 'get',
+                    data: { },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success) {
+                            var d = data.data;
+                            $('.navbar-brand').html(d.username);
+                            localStorage.setItem('data',JSON.stringify(data.data));
+                        } else {
+                            console.log(data.msg);
+                        }
+                    },
+                    error: function (err) {
+                        // alert('内部服务错误');
+                    }
+                });
+            } else {
+                var data = localStorage.getItem('data');
+                data = JSON.parse(data);
+                $('.navbar-brand').html(data.username);
+            }
         })
+        
     </script>
 </head>
 
@@ -35,7 +63,7 @@
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="javascript:void(0)">Sam Zhang</a>
+                <a class="navbar-brand" href="javascript:void(0)"></a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -44,8 +72,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="/userProfile"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li class='exit'><a href="javascript:;"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

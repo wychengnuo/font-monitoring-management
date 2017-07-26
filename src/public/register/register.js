@@ -6,13 +6,13 @@ $(document).ready(function () {
 
         if (check()) {
             $.ajax({
-                url: '/api/login',
+                url: '/api/register',
                 type: 'POST',
-                data: { username: $('.username').val(), password: $('.password').val() },
+                data: { username: $('.username').val(), nickname: $('.nickname').val(), password: $('.password').val() },
                 dataType: 'json',
                 success: function (data) {
                     if (data.success) {
-                        alert('登录成功');
+                        alert('注册成功');
                         window.location.href = '/index?name=' + data.data.name;
                     } else {
                         console.log(data.msg);
