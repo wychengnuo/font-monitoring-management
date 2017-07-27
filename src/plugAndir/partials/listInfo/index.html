@@ -59,17 +59,17 @@
                         <label class="submit">
                             <span>选择文件</span>
                             <dl class="file">
-                                <input type="file" name="file" multiple="multiple">点击这里上传文件
+                                <input type="file" required="required" name="file" multiple="multiple">点击这里上传文件
                             </dl>
                         </label>
                         <label class="submit">
                             <span>版本号：</span>
-                            <input type="text" class="form-control" name="plugVersion" placeholder="请输入插件版本号" id="plugVersion"/>
+                            <input type="text" class="form-control" name="plugVersion" placeholder="请输入插件版本号" required="required" id="plugVersion"/>
                         </label>
                         <br />
                         <label class="area">
                             <span>更新内容：</span>
-                            <textarea name="textarea" minlength="3"></textarea>
+                            <textarea name="textarea" minlength="3" required="required"></textarea>
                         </label>
                         <label class="radio">
                             <span>强制升级：</span>
