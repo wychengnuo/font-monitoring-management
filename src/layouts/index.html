@@ -156,6 +156,15 @@
         var result = window.location.search.substr(1).match(reg);
         return result ? decodeURIComponent(result[2]) : null;
     };
+
+    window._maq = window._maq || [];
+    _maq.push(['_setAccount', 'aaaa']);
+
+    (function() {
+        var ma = document.createElement('script'); ma.type = 'text/javascript'; ma.async = true;
+        ma.src = ('https:' == document.location.protocol ? 'http://10.152.16.9:3002' : 'http://10.152.16.9:3002') + '/goindex.min.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ma, s);
+    })();
 </script>
 
 </html>

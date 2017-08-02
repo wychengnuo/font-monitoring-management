@@ -9,9 +9,6 @@
             "request": "launch",
             "name": "启动程序",
             "program": "${workspaceRoot}/index.js",
-            "runtimeArgs": [
-                "--harmony-async-await"
-            ],
             "cwd": "${workspaceRoot}"
         },
         {
