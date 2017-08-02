@@ -2,6 +2,15 @@ const Router = require('koa-router');
 const compose = require('koa-compose');
 const router = Router();
 
+const { host } = require('./../../config/default');
+
+
+
+const os = require('os');
+
+const networkInterfaces = os.networkInterfaces();
+const eth0 = (networkInterfaces.eth0 || networkInterfaces.en0).filter(i=> i.family === 'IPv4');
+
 
 router
     .get('/plugAndir', async (ctx, next) => {
@@ -21,7 +30,8 @@ router
         ctx.locals = {
             isTrue: true,
             plugTitle: true,
-            data: '插件详情'
+            data: '插件详情',
+            path: 'http://' + (host || (eth0[0].address + ':3002')) + '/api/setPlugListInfo'
         };
         await next();
     });
