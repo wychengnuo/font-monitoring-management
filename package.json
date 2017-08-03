@@ -10,6 +10,7 @@
     "delete": "pm2 delete font-monitoring-management"
   },
   "dependencies": {
+    "babel-eslint": "^7.2.3",
     "debug": "^2.1.3",
     "koa-compose": "^3.2.1",
     "koa-convert": "^1.2.0",
