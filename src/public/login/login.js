@@ -15,7 +15,7 @@ $(document).ready(function () {
                         alert('登录成功');
                         window.location.href = '/index';
                     } else {
-                        console.log(data.msg);
+                        alert(data.msg);
                     }
                 },
                 error: function (err) { 
