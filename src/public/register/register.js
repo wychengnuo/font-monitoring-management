@@ -13,6 +13,7 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data.success) {
                         alert('注册成功');
+                        localStorage.removeItem('data');
                         window.location.href = '/index';
                     } else {
                         console.log(data.msg);

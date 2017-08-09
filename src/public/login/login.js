@@ -13,6 +13,7 @@ $(document).ready(function () {
                 success: function (data) {
                     if (data.success) {
                         alert('登录成功');
+                        localStorage.removeItem('data');
                         window.location.href = '/index';
                     } else {
                         alert(data.msg);
