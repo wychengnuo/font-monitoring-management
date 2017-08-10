@@ -85,7 +85,7 @@ $(function () {
                     arr.push(d[i].name);
                     arr1.push(d[i].y);
                 }
-                histograms(arr, arr1);
+                histograms('container_interface', arr, arr1);
             }
         },
         error: function (err) {
