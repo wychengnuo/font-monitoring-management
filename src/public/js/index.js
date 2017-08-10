@@ -53,7 +53,7 @@ function histograms(ele, arr, arr1) {
 $(function () {
 
     $.ajax({
-        url: '/api/typeErr',
+        url: '/plugin/api/typeErr',
         type: 'GET',
         data: '',
         dataType: 'json',
@@ -72,29 +72,8 @@ $(function () {
             alert('内部服务错误');
         }
     });
-    var arr;
     $.ajax({
-        url: '/api/getUrlErr',
-        type: 'GET',
-        data: '',
-        dataType: 'json',
-        success: function (data) {
-            if (data.success) {
-                var d = data.data;
-                var arr = [], arr1 = [];
-                for (var i = 0; i < d.length; i++){
-                    arr.push(d[i].name);
-                    arr1.push(d[i].y);
-                }
-                histograms('container_interface', arr, arr1);
-            }
-        },
-        error: function (err) {
-            alert('内部服务错误');
-        }
-    });
-    $.ajax({
-        url: '/api/getUrlErr',
+        url: '/plugin/api/getUrlErr',
         type: 'GET',
         data: '',
         dataType: 'json',
@@ -114,7 +93,7 @@ $(function () {
         }
     });
     $.ajax({
-        url: '/api/getPlugDownloads',
+        url: '/plugin/api/getPlugDownloads',
         type: 'GET',
         data: '',
         dataType: 'json',

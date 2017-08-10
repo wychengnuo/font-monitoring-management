@@ -16,7 +16,7 @@ $(document).ready(function () {
 
     $('#submit').on('click', function () {
         $.ajax({
-            url: '/api/setPlug',
+            url: '/plugin/api/setPlug',
             type: 'POST',
             data: {
                 account: $('#name').val(),
@@ -47,7 +47,7 @@ $(document).ready(function () {
 function getPlug() {
     var li = '';
     $.ajax({
-        url: '/api/getPlug',
+        url: '/plugin/api/getPlug',
         type: 'GET',
         data: {},
         dataType: 'json',

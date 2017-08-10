@@ -11,7 +11,7 @@ app.use(router());
 app.use(proxy({
     proxy_rules: [
         {
-            proxy_location: /api/,
+            proxy_location: /plugin/,
             proxy_pass: 'http://127.0.0.1:3002',
             proxy_micro_service: false,
             proxy_merge_mode: false

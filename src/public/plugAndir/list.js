@@ -8,7 +8,7 @@ $(function () {
     });
 
     var options = {
-        url: '/api/setPlugList',
+        url: '/plugin/api/setPlugList',
         type: 'POST',
         success: function (data) {
             if (data.success) {
@@ -58,7 +58,7 @@ $(function () {
 function getPlugList() {
     var tr = '';
     $.ajax({
-        url: '/api/getPlugList',
+        url: '/plugin/api/getPlugList',
         type: 'GET',
         data: {
             category: $('#category').val()
@@ -102,7 +102,7 @@ function getPlugList() {
 function delPlug(str) {
     
     $.ajax({
-        url: '/api/delPlug',
+        url: '/plugin/api/delPlug',
         dataType: 'json',
         type: 'POST',
         data: {

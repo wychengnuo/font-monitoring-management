@@ -31,7 +31,7 @@ router
             isTrue: true,
             plugTitle: true,
             data: '插件详情',
-            path: 'http://' + (host || (eth0[0].address + ':3002')) + '/api/setPlugListInfo'
+            path: 'http://' + (host || (eth0[0].address + ':3002')) + '/plugin/api/setPlugListInfo'
         };
         await next();
     });
