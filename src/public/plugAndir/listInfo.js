@@ -32,7 +32,7 @@ function getPlugList() {
     var str = '';
     var pages = 1;
     $.ajax({
-        url: '/api/getPlugListInfo',
+        url: '/plugin/api/getPlugListInfo',
         type: 'GET',
         data: {
             category: getvl('name'),
@@ -91,7 +91,7 @@ function getPlugList() {
                     },
                     onPageClicked: function (event, originalEvent, type, pages) {
                         $.ajax({
-                            url: '/api/getPlugListInfo',
+                            url: '/plugin/api/getPlugListInfo',
                             type: 'GET',
                             data: {
                                 category: getvl('name'),
@@ -160,7 +160,7 @@ function getPlugList() {
 function setting(num, order) {
 
     $.ajax({
-        url: '/api/settingPlug',
+        url: '/plugin/api/settingPlug',
         dataType: 'json',
         type: 'POST',
         data: {

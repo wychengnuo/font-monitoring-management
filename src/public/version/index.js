@@ -14,7 +14,7 @@ var ind = {
 
         $.ajax({
             type: 'get',
-            url: '/api/getBasic',
+            url: '/plugin/api/getBasic',
             data: '',
             async: false,
             success: function (data) {

@@ -6,7 +6,7 @@ $(document).ready(function () {
 
         if (check()) {
             $.ajax({
-                url: '/api/register',
+                url: '/plugin/api/register',
                 type: 'POST',
                 data: { username: $('.username').val(), nickname: $('.nickname').val(), password: $('.password').val() },
                 dataType: 'json',
