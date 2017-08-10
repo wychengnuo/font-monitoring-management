@@ -11,7 +11,7 @@
         $(function () {
             $('.exit').on('click', function () {
                 $.ajax({
-                    url: '/api/layout',
+                    url: '/plugin/api/layout',
                     type: 'POST',
                     data: '',
                     dataType: 'json',
@@ -31,7 +31,7 @@
             if(!localStorage.getItem('data')){
 
                 $.ajax({
-                    url: '/api/userInfo',
+                    url: '/plugin/api/userInfo',
                     type: 'get',
                     data: { },
                     dataType: 'json',
@@ -135,7 +135,7 @@
         </footer>
         <script>
             $.ajax({
-                url: '/api/isLogin',
+                url: '/plugin/api/isLogin',
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
