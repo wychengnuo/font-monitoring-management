@@ -16,7 +16,7 @@ var ind = {
 
         $.ajax({
             type: 'get',
-            url: '/api/getHtmlError',
+            url: '/plugin/api/getHtmlError',
             data: {
                 page: pages,
                 pageSize: '10'
@@ -67,7 +67,7 @@ var ind = {
                         onPageClicked: function (event, originalEvent, type, pages) {
                             $.ajax({
                                 type: 'get',
-                                url: '/api/getHtmlError',
+                                url: '/plugin/api/getHtmlError',
                                 data: {
                                     page: pages,
                                     pageSize: '10'
