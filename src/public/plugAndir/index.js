@@ -32,7 +32,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('内部服务错误');
+                alert('暂无数据');
             }
         });
     });
@@ -58,6 +58,7 @@ function getPlug() {
                     var a = JSON.parse(o);
                     if (a.account) {
                         li += '<li class="li">';
+                        li += '<i class="fa fa-close" aria-hidden="true" onclick="delPlug(\'' + a.account + '\')"></i>';
                         li += '<img src="/plugAndir/logo.jpg" />';
                         li += '    <span>' + a.account + '</span>';
                         li += '    <span class="s1">' + a.version + '</span>';
@@ -69,11 +70,26 @@ function getPlug() {
                 });
                 $('#list').html(li);   
             } else {
-                console.log(data.msg);
+                $('#list').html('');
             }
         },
         error: function () {
-            alert('内部服务错误');
+            alert('暂无数据');
         }
     });
+}
+
+function delPlug(account) {
+    $.ajax({
+        url: '/plugin/api/delAndirPlug',
+        type: 'post',
+        data: {account: account},
+        dataType: 'json',
+        success: function (data) {
+            if (data.success) {
+                getPlug();
+            }
+        }
+    });
+
 }
