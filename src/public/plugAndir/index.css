@@ -20,6 +20,7 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     overflow: hidden;
     margin: 0 10px 10px 16px;
+    position: relative;
 }
 
 .plug ul li img {
@@ -246,6 +247,14 @@ td {
     border-color: #78C3F3;
     color: #004974;
     text-decoration: none;
+}
+
+.plug ul .li .fa {
+    font-size: 18px;
+    position: absolute;
+    right: 9px;
+    top: 4px;
+    cursor: pointer;
 }
 
 .upload .box {

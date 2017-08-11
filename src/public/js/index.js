@@ -69,7 +69,7 @@ $(function () {
             }
         },
         error: function (err) {
-            alert('内部服务错误');
+            alert('暂无数据');
         }
     });
     $.ajax({
@@ -89,7 +89,7 @@ $(function () {
             }
         },
         error: function (err) {
-            alert('内部服务错误');
+            alert('暂无数据');
         }
     });
     $.ajax({
@@ -109,7 +109,7 @@ $(function () {
             }
         },
         error: function (err) {
-            alert('内部服务错误');
+            alert('暂无数据');
         }
     });
 });
