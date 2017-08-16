@@ -126,6 +126,14 @@
                         {{/if}}
                         <i class="fa fa-android"></i>Plug-in For Android</a>
                     </li>
+                    <li>
+                        {{#if data.messagePushTitle}}
+                        <a href="/messagePush" class="active-menu"><span class="fa arrow"></span>
+                        {{else}}
+                             <a href="/messagePush">
+                        {{/if}}
+                        <i class="fa fa-commenting-o"></i>Message Push</a>
+                    </li>
                 </ul>
             </div>
         </nav>
