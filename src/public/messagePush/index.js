@@ -164,9 +164,8 @@ function getPlugList() {
 }
 
 
-
 function setting(num, order) {
-    
+    socketio(order);
     $.ajax({
         url: '/plugin/api/setMessage',
         dataType: 'json',
@@ -183,4 +182,14 @@ function setting(num, order) {
             alert('设置失败');
         }
     });
+}
+
+function socketio(order) {
+    var socket = io('http://localhost:3002');
+    socket.once('connect', function () {
+        socket.emit('ferret', order, function (data) {
+            console.log(data); // data will be 'woot'
+        });
+    });
+
 }
