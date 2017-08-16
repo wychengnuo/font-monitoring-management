@@ -57,8 +57,24 @@
         <div class="row">
           <p class="title">类型介绍(method:请求类型，originalUrl:接口地址, status:接口状态码，t: 接口返回时间，（msg = false: 接口错误信息）)</p>
             <div id="dates" class='date panel'></div>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <ul class="pagination pagination-sm" id='pageUl'>
             </ul>
+            <div class="zwsj" style="display:none">
+                暂无数据
+            </div>
         </div>
     </div>
 </div>

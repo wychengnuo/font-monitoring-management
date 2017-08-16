@@ -1,41 +1,60 @@
-$(function () {
 
-    $('#name').val(getvl('name'));
-    $('.add').on('click', function () {
-        $('.mask, .upload').show();
+/**
+ * 上传消息
+ */
+
+$(function () { 
+
+    $('.add').on('click', function () { 
+        $('.addMessage .mask').show();
     });
 
-    $('.file').on('change', 'input[type=\'file\']', function () {
-        var filePath = $(this).val();
-        if (filePath) {
-            var arr = filePath.split('\\');
-            var fileName = arr[arr.length - 1];
-            alert(fileName);
-        } else {
-            $('.showFileName').html('');
-            alert('您未上传文件，或者您上传文件类型有误');
-            return false;
-        }
+    $('.btn-warning').on('click', function () {
+        $('.addMessage .mask').hide();
     });
 
-    $('.cancel').on('click', function () {
-        $('.mask, .upload').hide();
-        return false;
+
+    $('.submit').on('click', function () { 
+
+        $.ajax({
+            type: 'POST',
+            url: '/plugin/api/addMessage',
+            data: {
+                uerTypes: $('input[name=\'userTypes\']:checked').val(),
+                content: $('textarea').val(),
+                channl: $('input[name=\'channl\']').val(),
+                timeSwitch: $('input[name=\'timeSwitch\']:checked').val(),
+                pushTime: $('input[name=\'pushTime\']').val(),
+                isEnable: $('input[name=\'isEnable\']').val()
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.success) {
+                    $('.addMessage .mask').hide();
+                    $('input[type=reset]').trigger('click');
+                    getPlugList();
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
     });
 
     getPlugList();
 
+
 });
+
 
 function getPlugList() {
     var tr = '';
     var str = '';
     var pages = 1;
     $.ajax({
-        url: '/plugin/api/getPlugListInfo',
+        url: '/plugin/api/getMessage',
         type: 'GET',
         data: {
-            category: getvl('name'),
             page: pages,
             pageSize: '10'
         },
@@ -46,22 +65,26 @@ function getPlugList() {
 
                 $.each(d, function (i, o) {
                     var a = JSON.parse(o);
+                    var userTypes = '';
+                    switch (a.uerTypes) {
+                    case '1':
+                        userTypes = '全部用户';
+                        break;
+                    case '2':
+                        userTypes = '部分用户';
+                        break;
+                    case '3':
+                        userTypes = '独立用户';
+                        break;
+                    }
                     str = '<span onclick="setting(1,' + i + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + i + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + i + ')"  style="margin:0 10px">删除</span>';
-                    var channl = a.channl ? a.channl : '所有';
-                    var systemVer = a.systemVer ? a.systemVer : '所有';
-                    var appVer = a.appVer ? a.appVer : '所有';
-                    var version = a.version ? a.version : '所有';
-                    var plugVer = a.plugVersion ? a.plugVersion : '所有';
-
                     tr += '<tr>';
-                    tr += '<td>' + a.plugName + '</td>';
-                    tr += '<td>' + plugVer + '</td>';
-                    tr += '<td>' + appVer + '</td>';
-                    tr += '<td>' + version + '</td>';
-                    tr += '<td>' + channl + '</td>';
-                    tr += '<td>' + systemVer + '</td>';
+                    tr += '<td>' + userTypes + '</td>';
                     tr += '<td>' + a.time + '</td>';
-                    tr += '<td>' + a.textarea + '</td>';
+                    tr += '<td>' + a.content + '</td>';
+                    tr += '<td>' + a.channl + '</td>';
+                    tr += '<td>' + a.timeSwitch + '</td>';
+                    tr += '<td>' + a.pushTime + '</td>';
                     tr += '<td>' + str + '</td>';
                     tr += '</tr>';
                 });
@@ -91,10 +114,9 @@ function getPlugList() {
                     },
                     onPageClicked: function (event, originalEvent, type, pages) {
                         $.ajax({
-                            url: '/plugin/api/getPlugListInfo',
+                            url: '/plugin/api/getMessage',
                             type: 'GET',
                             data: {
-                                category: getvl('name'),
                                 page: pages,
                                 pageSize: '10'
                             },
@@ -103,23 +125,15 @@ function getPlugList() {
                                     var d = data.data;
                                     $.each(d, function (i, o) {
                                         var a = JSON.parse(o);
-                                        str = '<span class="confi btn btn-info" style="margin:0 10px" onclick="setting(1,' + i + ')" >启用</span><span class="confir btn btn-warning" onclick="setting(2,' + i + ')" >停用</span><span class="del btn btn-danger" style="margin:0 10px" onclick="setting(3,' + i + ')" >删除</span>';
-
-                                        var channl = a.channl ? a.channl : '所有';
-                                        var systemVer = a.systemVer ? a.systemVer : '所有';
-                                        var appVer = a.appVer ? a.appVer : '所有';
-                                        var version = a.version ? a.version : '所有';                               
-                                        var plugVer = a.plugVersion ? a.plugVersion : '所有';
-
+                                        str = '<span onclick="setting(1,' + i + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + i + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + i + ')"  style="margin:0 10px">删除</span>';
                                         tr += '<tr>';
-                                        tr += '<td>' + a.plugName + '</td>';
-                                        tr += '<td>' + plugVer + '</td>';
-                                        tr += '<td>' + appVer + '</td>';
-                                        tr += '<td>' + version + '</td>';
-                                        tr += '<td>' + channl + '</td>';
-                                        tr += '<td>' + systemVer + '</td>';
+                                        tr += '<td>' + a.uerTypes + '</td>';
                                         tr += '<td>' + a.time + '</td>';
-                                        tr += '<td>' + a.textarea + '</td>';
+                                        tr += '<td>' + a.content + '</td>';
+                                        tr += '<td>' + a.channl + '</td>';
+                                        tr += '<td>' + a.timeSwitch + '</td>';
+                                        tr += '<td>' + a.pushTime + '</td>';
+                                        tr += '<td>' + a.time + '</td>';
                                         tr += '<td>' + str + '</td>';
                                         tr += '</tr>';
                                     });
@@ -134,12 +148,6 @@ function getPlugList() {
             } else {
                 $('table tbody').html('');
                 $('#pageUl').hide();
-                // $('.modal-body').html('暂无数据');
-                // $('#myModal').modal({
-                //     keyboard: true,
-                //     show: true
-                // });
-                // $('.zwsj').show();
             }
         },
         error: function () {
@@ -155,18 +163,17 @@ function getPlugList() {
     });
 }
 
-// 设置操作
+
 
 function setting(num, order) {
-
+    
     $.ajax({
-        url: '/plugin/api/settingPlug',
+        url: '/plugin/api/setMessage',
         dataType: 'json',
         type: 'POST',
         data: {
             num: num,
-            order: order,
-            name: $('#name').val()
+            order: order
         },
         success: function (data) {
             console.log(data.msg);
@@ -176,14 +183,4 @@ function setting(num, order) {
             alert('设置失败');
         }
     });
-}
-
-function hiddenDiv(num) {
-    if (num == '1') {
-        $('.d1').css('display', 'none');
-        $('.plug .mask .upload').removeClass('uploadHeight');
-    } else {
-        $('.d1').css('display', 'block');
-        $('.plug .mask .upload').addClass('uploadHeight');
-    }
 }
