@@ -4,7 +4,7 @@
  */
 
 $(function () { 
-
+    // socketio();
     $('.add').on('click', function () { 
         $('.addMessage .mask').show();
     });
@@ -23,8 +23,8 @@ $(function () {
                 uerTypes: $('input[name=\'userTypes\']:checked').val(),
                 content: $('textarea').val(),
                 channl: $('input[name=\'channl\']').val(),
-                timeSwitch: $('input[name=\'timeSwitch\']:checked').val(),
-                pushTime: $('input[name=\'pushTime\']').val(),
+                // timeSwitch: $('input[name=\'timeSwitch\']:checked').val(),
+                // pushTime: $('input[name=\'pushTime\']').val(),
                 isEnable: $('input[name=\'isEnable\']').val()
             },
             dataType: 'json',
@@ -83,8 +83,8 @@ function getPlugList() {
                     tr += '<td>' + a.time + '</td>';
                     tr += '<td>' + a.content + '</td>';
                     tr += '<td>' + a.channl + '</td>';
-                    tr += '<td>' + a.timeSwitch + '</td>';
-                    tr += '<td>' + a.pushTime + '</td>';
+                    // tr += '<td>' + a.timeSwitch + '</td>';
+                    // tr += '<td>' + a.pushTime + '</td>';
                     tr += '<td>' + str + '</td>';
                     tr += '</tr>';
                 });
@@ -131,9 +131,8 @@ function getPlugList() {
                                         tr += '<td>' + a.time + '</td>';
                                         tr += '<td>' + a.content + '</td>';
                                         tr += '<td>' + a.channl + '</td>';
-                                        tr += '<td>' + a.timeSwitch + '</td>';
-                                        tr += '<td>' + a.pushTime + '</td>';
-                                        tr += '<td>' + a.time + '</td>';
+                                        // tr += '<td>' + a.timeSwitch + '</td>';
+                                        // tr += '<td>' + a.pushTime + '</td>';
                                         tr += '<td>' + str + '</td>';
                                         tr += '</tr>';
                                     });
@@ -165,7 +164,9 @@ function getPlugList() {
 
 
 function setting(num, order) {
-    socketio(order);
+    if (num != '3') {
+        socketio(order);
+    }
     $.ajax({
         url: '/plugin/api/setMessage',
         dataType: 'json',
@@ -184,12 +185,38 @@ function setting(num, order) {
     });
 }
 
+
 function socketio(order) {
     var socket = io('http://localhost:3002');
-    socket.once('connect', function () {
-        socket.emit('ferret', order, function (data) {
-            console.log(data); // data will be 'woot'
-        });
+    socket.on('connect', function () {
+        if (typeof order !== 'undefined') {
+            socket.emit('ferret', order, function (data) {
+                if (data.success) {
+                    var d = data.data;
+                    switch (d.uerTypes) {
+                    case '1':
+                        alert(d.content);
+                        break;
+                    case '2':
+                        alert(d.content);
+                        break;
+                    case '3':
+                        alert(d.content);  
+                        break;
+                    default:
+                        break;
+                    }
+
+                }
+            });
+        }
+        // else {
+        //     socket.emit('realtime', 'sdfd', function (data) {
+                
+        //         console.log(data)
+
+        //     })
+        // }
     });
 
 }

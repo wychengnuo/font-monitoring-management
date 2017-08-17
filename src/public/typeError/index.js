@@ -118,6 +118,7 @@ var ind = {
 
 
 $(function () {
+    $('#date').html('');
     ind.getDate();
 
 });
