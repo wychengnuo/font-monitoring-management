@@ -21,10 +21,7 @@ module.exports = function (ctx) {
         
     } else {
         let vp = ctx.path.replace(/^(?!{-})\//, '').split('/');
-        let status = 404;
-        if (vp.length !== 2) {
-            viewsPath = papa.join(__dirname, '/src/error/views/', status + '.html');
-        }
+
         if (vp.length > 1) {
             viewsPath = papa.join(__dirname, 'src/', vp[0] + '/partials/' + vp[1] + '/index.html');
         } else {
@@ -35,6 +32,13 @@ module.exports = function (ctx) {
     /**
      * 使用Handlebars.compile 解析页面
      */
+
+    const isTrue = isFile(viewsPath);
+
+    if (!isTrue) {
+        let status = 404;
+        viewsPath = papa.join(__dirname, '/src/error/views/', status + '.html');
+    }
 
     const viewFile = fs.readFileSync(viewsPath, 'utf8');
 
@@ -49,4 +53,17 @@ module.exports = function (ctx) {
     tmpl.viewTemplate = viewTemplate;
 
     return tmpl;
+};
+
+
+const isFile = (path) => {
+    let is;
+    return fs.existsSync(path, function (exists) {
+        if (exists) {
+            is = true;
+        } else {
+            is = false;
+        }
+    });
+    // return is;
 };
