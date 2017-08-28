@@ -10,16 +10,6 @@ router
         };
         await next();
     });
-
-    switch (key) {
-        case value:
-            
-            break;
-    
-        default:
-            break;
-    }
-
 module.exports = () => compose([
     router.routes(),
     router.allowedMethods()
