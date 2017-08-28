@@ -35,7 +35,7 @@ var ind = {
                         tr1 += '<tr>' + td1 + '</tr>';
                     }
 
-                    table = '<table class="table table-bordered table-hover">' + tr + tr1 + '</table>';
+                    table = '<table class="table-hover">' + tr + tr1 + '</table>';
 
                     $('#ss').html(table);
                 } else {

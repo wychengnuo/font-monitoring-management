@@ -24,6 +24,7 @@ var ind = {
             async: false,
             success: function (data) {
                 if (data.success && data.data.length) {
+                    $('.title').hide();
                     tr = '', tr1 = '', td = '', td1 = '';
                     var date = data.data;
                     for (var i = 0; i < date.length; i++) {
@@ -42,7 +43,7 @@ var ind = {
                         }
                     }
 
-                    table = '<table class="table table-bordered table-hover">' + tr + tr1 + '</table>';
+                    table = '<table class="table-hover">' + tr + tr1 + '</table>';
 
                     $('#date').html(table);
 
@@ -77,6 +78,7 @@ var ind = {
                                     pageSize: '10'
                                 },
                                 success: function (data) {
+                                    $('.title').hide();
                                     tr = '', tr1 = '', td = '', td1 = '';
                                     var date = data.data;
                                     for (var i = 0; i < date.length; i++) {
@@ -95,7 +97,7 @@ var ind = {
                                         }
                                     }
 
-                                    table = '<table class="table table-bordered table-hover">' + tr + tr1 + '</table>';
+                                    table = '<table class="table-hover">' + tr + tr1 + '</table>';
 
                                     $('#date').html(table);
 
@@ -104,13 +106,11 @@ var ind = {
                         }
                     };
                     $('#pageUl').bootstrapPaginator(options);
-                } else {
-                    $('#date').html('暂无数据').css('text-align', 'center');
                 }
 
             },
             error: function (date) {
-                $('#date').html('暂无数据').css('text-align', 'center');
+            
             }
         });
     }

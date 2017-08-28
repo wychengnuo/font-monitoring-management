@@ -1,28 +1,44 @@
-
 <div id="page-wrapper">
     <script src="/js/bootstrap-paginator.js"></script>
     <script src="/netError/index.js"></script>
     <style>
-
         .ss {
             padding: 30px;
         }
+        table {
+            width: 100%;
+        }
 
-        table, th, td {
+        table,
+        th,
+        td {
             text-align: center;
             vertical-align: middle !important;
         }
 
+        thead,
         .title {
-            height: 40px;
-            line-height: 40px;
+            height: 36px;
+            line-height: 36px;
             text-align: center;
             font-weight: bold;
-            background: #337ab7;
+            background: #3b99d9;
             color: #fff;
-            border-radius: 2px;
-            border: 1px solid #337ab7;
             position: relative;
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
+        }
+
+        tr {
+            height: 36px;
+            line-height: 36px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        td,
+        th {
+            padding: 0 12px;
         }
 
         .ss a {
@@ -35,18 +51,14 @@
 
         .date {
             background: #fff;
-            padding: 10px;
+            overflow-y: auto;
         }
 
-        .date>table {
-            border: 1px solid #ddd !important;
-        }
 
         .pagination {
-            margin: 0;
+            margin: 0 10px 0 0;
             float: right;
         }
-
     </style>
     <div class="header">
         <h3 class="page-header">
@@ -55,26 +67,11 @@
     </div>
     <div id="page-inner">
         <div class="row">
-          <p class="title">类型介绍(method:请求类型，originalUrl:接口地址, status:接口状态码，t: 接口返回时间，（msg = false: 接口错误信息）)</p>
-            <div id="dates" class='date panel'></div>
+            <p class="title">类型介绍(method:请求类型，originalUrl:接口地址, status:接口状态码，t: 接口返回时间，（msg = false: 接口错误信息）)</p>
+            <div id="dates" class='date'></div>
             <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <ul class="pagination pagination-sm" id='pageUl'>
             </ul>
-            <div class="zwsj" style="display:none">
-                暂无数据
-            </div>
         </div>
     </div>
 </div>

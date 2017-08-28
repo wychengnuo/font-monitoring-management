@@ -147,6 +147,7 @@ function getPlugList() {
             } else {
                 $('table tbody').html('');
                 $('#pageUl').hide();
+                $('.zwsj').show();
             }
         },
         error: function () {
