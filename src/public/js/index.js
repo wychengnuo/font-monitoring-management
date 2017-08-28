@@ -12,7 +12,7 @@ var ind = {
 };
 
 
-function histograms(ele, arr, arr1) {
+function histograms(ele, arr, arr1, str) {
     var myChart = echarts.init(document.getElementById(ele));
     myChart.title = '坐标轴刻度与标签对齐';
 
@@ -41,7 +41,7 @@ function histograms(ele, arr, arr1) {
             type: 'value'
         }],
         series: [{
-            name: '错误次数',
+            name: str ? str : '错误次数',
             type: 'bar',
             barWidth: '20%',
             data: arr1
@@ -105,7 +105,7 @@ $(function () {
                     arr.push(i);
                     arr1.push(d[i]);
                 }
-                histograms('container_downloads', arr, arr1);
+                histograms('container_downloads', arr, arr1, '下载量统计');
             }
         },
         error: function (err) {
