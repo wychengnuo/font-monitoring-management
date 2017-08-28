@@ -1,6 +1,7 @@
 
 
 <div id="page-wrapper">
+    <script src="/js/bootstrap-paginator.js"></script>
     <script src="/version/index.js"></script>
     <style>
 
@@ -47,6 +48,10 @@
             background: #fff;
             overflow-y: auto;
         }
+        .pagination {
+            margin: 10px 10px 0 0;
+            float: right;
+        }
 
     </style>
     <div class="header">
@@ -58,5 +63,7 @@
         <div class="row">
         <div id="ss" class="date"></div>
         </div>
+        <ul class="pagination pagination-sm" id='pageUl'>
+            </ul>
     </div>
 </div>
