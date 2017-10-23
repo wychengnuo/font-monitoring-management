@@ -1,6 +1,7 @@
 
 
 <div id="page-wrapper">
+    <script src="/js/bootstrap-paginator.js"></script>
     <script src="/version/index.js"></script>
     <style>
 
@@ -13,16 +14,26 @@
             vertical-align: middle !important;
         }
 
-        .title {
-            height: 40px;
-            line-height: 40px;
+        thead {
+            height: 36px;
+            line-height: 36px;
             text-align: center;
             font-weight: bold;
-            background: #337ab7;
+            background: #3b99d9;
             color: #fff;
-            border-radius: 2px;
-            border: 1px solid #337ab7;
             position: relative;
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
+        }
+        tr {
+            height: 36px;
+            line-height: 36px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        td,th {
+            padding: 0 12px;
         }
 
         .ss a {
@@ -35,13 +46,13 @@
 
         .date {
             background: #fff;
-            padding: 10px;
             overflow-y: auto;
         }
-
-        .date>table {
-            border: 1px solid #ddd !important;
+        .pagination {
+            margin: 10px 10px 10px 0;
+            float: right;
         }
+
     </style>
     <div class="header">
         <h3 class="page-header">
@@ -50,8 +61,9 @@
     </div>
     <div id="page-inner">
         <div class="row">
-           <p class="title">用户版本信息</p>
-        <div id="ss" class="date panel"></div>
+        <div id="ss" class="date"></div>
         </div>
+        <ul class="pagination pagination-sm" id='pageUl'>
+            </ul>
     </div>
 </div>

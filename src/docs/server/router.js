@@ -4,17 +4,12 @@ const compose = require('koa-compose');
 const router = new Router();
 
 router
-    .get('/', async (ctx) => {
-        ctx.redirect('/management');
-    })    
-    .get('/index', async(ctx, next) => {
+    .get('/docs', async (ctx, next) => {
         ctx.locals = {
-            isTrue: true,
-            indexTitle: true
+            isTrue: false
         };
         await next();
     });
-
 module.exports = () => compose([
     router.routes(),
     router.allowedMethods()
