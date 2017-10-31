@@ -24,7 +24,7 @@ var message = {
                     var d = data.data;
 
                     $.each(d, function (i, o) {
-                        var a = JSON.parse(o);
+                        var a = o;
                         var userTypes = '';
                         switch (a.uerTypes) {
                             case '1':
@@ -227,20 +227,22 @@ function socketio(order) {
     });
 }
 function getPlant(id) {
-    id = id.split(',');
     var plant, plantList = [];
-    for (var i = 0; i < id.length; i++) {
-        switch(id[i]) {
-            case '1':
-                plant = 'PC'; break;
-            case '2':
-                plant = 'H5'; break;
-            case '3':
-                plant = 'ANDROID'; break;
-            case '4':
-                plant = 'IOS'; break;
+    if (id) {
+        id = id.split(',');
+        for (var i = 0; i < id.length; i++) {
+            switch(id[i]) {
+                case '1':
+                    plant = 'PC'; break;
+                case '2':
+                    plant = 'H5'; break;
+                case '3':
+                    plant = 'ANDROID'; break;
+                case '4':
+                    plant = 'IOS'; break;
+            }
+            plantList.push(plant)
         }
-        plantList.push(plant)
     }
     return plantList;
 }
