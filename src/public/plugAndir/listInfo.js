@@ -47,6 +47,7 @@ function getPlugList() {
                 $.each(d, function (i, o) {
                     var a = o;
                     str = '<span onclick="setting(1,' + '\'' + a.plugName + '\',' + '\'' + a.plugVersion + '\'' + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + '\'' + a.plugName + '\',' + '\'' + a.plugVersion + '\'' + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + '\'' + a.plugName + '\',' + '\'' + a.plugVersion + '\'' + ')"  style="margin:0 10px">删除</span>';
+
                     var channl = a.channl ? a.channl : '所有';
                     var systemVer = a.systemVer ? a.systemVer : '所有';
                     var appVer = a.appVer ? a.appVer : '所有';
