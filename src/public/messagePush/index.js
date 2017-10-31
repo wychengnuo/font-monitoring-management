@@ -170,17 +170,17 @@ $(function () {
     message.init();
 });
 
-function setting(num, order) {
-    if (num != '3') {
-        socketio(order);
-    }
+function setting(num, id) {
+    // if (num != '3') {
+    //     socketio(order);
+    // }
     $.ajax({
         url: '/plugin/api/setMessage',
         dataType: 'json',
         type: 'POST',
         data: {
             num: num,
-            order: order
+            id: id
         },
         success: function (data) {
             console.log(data.msg);
