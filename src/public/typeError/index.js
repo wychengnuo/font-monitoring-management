@@ -28,19 +28,14 @@ var ind = {
                     tr = '', tr1 = '', td = '', td1 = '';
                     var date = data.data;
                     for (var i = 0; i < date.length; i++) {
-                        var d = JSON.parse(date[i]);
+                        var d = date[i];
+                        td = '', td1 = '';
                         for (var a in d) {
-                            f = JSON.parse(d[a]);
-                            td = '', td1 = '';
-                            if (a.charAt(1) === 'r') {
-                                for (var e in f) {
-                                    td += '<th>' + e + '</th>';
-                                    td1 += '<td>' + f[e] + '</td>';
-                                }
-                                tr = '<thead><tr>' + td + '</tr></thead>';
-                                tr1 += '<tr>' + td1 + '</tr>';
-                            }
+                            td += '<th>' + a + '</th>';
+                            td1 += '<td>' + d[a] + '</td>';  
                         }
+                        tr = '<thead><tr>' + td + '</tr></thead>';
+                        tr1 += '<tr>' + td1 + '</tr>';
                     }
 
                     table = '<table class="table-hover">' + tr + tr1 + '</table>';
@@ -82,19 +77,14 @@ var ind = {
                                     tr = '', tr1 = '', td = '', td1 = '';
                                     var date = data.data;
                                     for (var i = 0; i < date.length; i++) {
-                                        var d = JSON.parse(date[i]);
+                                        var d = date[i];
+                                        td = '', td1 = '';
                                         for (var a in d) {
-                                            f = JSON.parse(d[a]);
-                                            td = '', td1 = '';
-                                            if (a.charAt(1) === 'r') {
-                                                for (var e in f) {
-                                                    td += '<th>' + e + '</th>';
-                                                    td1 += '<td>' + f[e] + '</td>';
-                                                }
-                                                tr = '<thead><tr>' + td + '</tr></thead>';
-                                                tr1 += '<tr>' + td1 + '</tr>';
-                                            }
+                                            td += '<th>' + a + '</th>';
+                                            td1 += '<td>' + d[a] + '</td>';  
                                         }
+                                        tr = '<thead><tr>' + td + '</tr></thead>';
+                                        tr1 += '<tr>' + td1 + '</tr>';
                                     }
 
                                     table = '<table class="table-hover">' + tr + tr1 + '</table>';
