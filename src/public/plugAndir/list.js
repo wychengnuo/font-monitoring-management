@@ -68,12 +68,12 @@ function getPlugList() {
             if (data.success && data.data.length) {
                 var d = data.data;
                 $.each(d, function (i, o) {
-                    var a = JSON.parse(o);
+                    var a = o;
                     tr += '<tr>';
-                    tr += '<td>' + a.plugName + '</td>';
+                    tr += '<td>' + a.plugListName + '</td>';
                     tr += '<td>' + a.time + '</td>';
                     tr += '<td>' + a.describe + '</td>';
-                    tr += '<td><span class="update btn btn-success"><a href="/plugAndir/listInfo?name=' + a.plugName + '"style="color:#fff;">编辑</a></span><span class="btn btn-danger" onclick="delPlug(\'' + a.plugName + '\')" style="margin-left:10px">删除</span></td>';
+                    tr += '<td><span class="update btn btn-success"><a href="/plugAndir/listInfo?name=' + a.plugListName + '"style="color:#fff;">编辑</a></span><span class="btn btn-danger" onclick="delPlug(\'' + a.plugListName + '\')" style="margin-left:10px">删除</span></td>';
                     tr += '</tr>';
                 });
                 $('table tbody').html(tr);
