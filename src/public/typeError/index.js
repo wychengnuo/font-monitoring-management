@@ -34,7 +34,8 @@ var ind = {
                     tr = '', tr1 = '', td = '', td1 = '';
                     var date = data.data;
                     for (var i = 0; i < date.length; i++) {
-                        var d = JSON.parse(date[i]);
+                        var d = date[i];
+                        td = '', td1 = '';
                         for (var a in d) {
                             f = JSON.parse(d[a]);
                             td = '', td1 = '';
@@ -53,13 +54,11 @@ var ind = {
                             }
                         }
                     }
-
                     table = '<table class="table-hover">' + tr + tr1 + '</table>';
 
                     $('#date').html(table);
 
                     _this.totalPage = data.pageSize; //取到pageCount的值
-
                     if (pages == 1) {
 
                         var options = {

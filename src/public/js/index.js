@@ -102,8 +102,8 @@ $(function () {
                 var d = data.data;
                 var arr = [], arr1 = [];
                 for (var i in d){
-                    arr.push(i);
-                    arr1.push(d[i]);
+                    arr.push(d[i].name);
+                    arr1.push(d[i].sum);
                 }
                 histograms('container_downloads', arr, arr1, '下载量统计');
             }
@@ -114,25 +114,25 @@ $(function () {
 
 
 
-    $.ajax({
-        url: '/plugin/api/getBrowser',
-        type: 'GET',
-        data: '',
-        dataType: 'json',
-        success: function (data) {
-            if (data.success) {
-                var d = data.data;
-                var arr = [], arr1 = [];
-                for (var i = 0; i < d.length; i++){
-                    arr.push(d[i].name);
-                    arr1.push(d[i].y);
-                }
-                histograms('container_browser', arr, arr1,'浏览器使用情况');
-            }
-        },
-        error: function (err) {
-            alert('暂无数据');
-        }
-    });
+    // $.ajax({
+    //     url: '/plugin/api/getBrowser',
+    //     type: 'GET',
+    //     data: '',
+    //     dataType: 'json',
+    //     success: function (data) {
+    //         if (data.success) {
+    //             var d = data.data;
+    //             var arr = [], arr1 = [];
+    //             for (var i = 0; i < d.length; i++){
+    //                 arr.push(d[i].name);
+    //                 arr1.push(d[i].y);
+    //             }
+    //             histograms('container_browser', arr, arr1,'浏览器使用情况');
+    //         }
+    //     },
+    //     error: function (err) {
+    //         alert('暂无数据');
+    //     }
+    // });
 
 });

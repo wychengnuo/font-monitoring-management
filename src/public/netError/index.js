@@ -29,7 +29,7 @@ var ind = {
                     tr = '', tr1 = '', td = '', td1 = '';
                     var date = data.data;
                     for (var i = 0; i < date.length; i++) {
-                        var d = JSON.parse(date[i]);
+                        var d = date[i];
                         td = '', td1 = '';
                         for (var a in d) {
                             td += '<th>' + a + '</th>';
@@ -78,7 +78,7 @@ var ind = {
                                     tr = '', tr1 = '', td = '', td1 = '';
                                     var date = data.data;
                                     for (var i = 0; i < date.length; i++) {
-                                        var d = JSON.parse(date[i]);
+                                        var d = date[i];
                                         td = '', td1 = '';
                                         for (var a in d) {
                                             td += '<th>' + a + '</th>';
