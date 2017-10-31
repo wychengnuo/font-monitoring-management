@@ -64,7 +64,7 @@ function getPlugList() {
                 var d = data.data;
 
                 $.each(d, function (i, o) {
-                    var a = JSON.parse(o);
+                    var a = o;
                     var userTypes = '';
                     switch (a.uerTypes) {
                     case '1':
@@ -77,7 +77,7 @@ function getPlugList() {
                         userTypes = '独立用户';
                         break;
                     }
-                    str = '<span onclick="setting(1,' + i + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + i + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + i + ')"  style="margin:0 10px">删除</span>';
+                    str = '<span onclick="setting(1,' + '\'' + a.id + '\'' + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + '\'' + a.id + '\'' + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + '\'' + a.id + '\'' + ')"  style="margin:0 10px">删除</span>';
                     tr += '<tr>';
                     tr += '<td>' + userTypes + '</td>';
                     tr += '<td>' + a.time + '</td>';
@@ -124,8 +124,8 @@ function getPlugList() {
                                 if (data.success && data.data.length) {
                                     var d = data.data;
                                     $.each(d, function (i, o) {
-                                        var a = JSON.parse(o);
-                                        str = '<span onclick="setting(1,' + i + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + i + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + i + ')"  style="margin:0 10px">删除</span>';
+                                        var a = o;
+                                        str = '<span onclick="setting(1,' + '\'' + a.id + '\'' + ')" class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" onclick="setting(2,' + '\'' + a.id + '\'' + ')" >停用</span><span class="del btn btn-danger" onclick="setting(3,' + '\'' + a.id + '\'' + ' )"  style="margin:0 10px">删除</span>';
                                         tr += '<tr>';
                                         tr += '<td>' + a.uerTypes + '</td>';
                                         tr += '<td>' + a.time + '</td>';
@@ -164,17 +164,17 @@ function getPlugList() {
 }
 
 
-function setting(num, order) {
-    if (num != '3') {
-        socketio(order);
-    }
+function setting(num, id) {
+    // if (num != '3') {
+    //     socketio(order);
+    // }
     $.ajax({
         url: '/plugin/api/setMessage',
         dataType: 'json',
         type: 'POST',
         data: {
             num: num,
-            order: order
+            id: id
         },
         success: function (data) {
             console.log(data.msg);
