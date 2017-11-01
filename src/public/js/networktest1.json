@@ -1,0 +1,17 @@
+{
+  "website": [
+    [1508325356, 123, 301, "get", "api/v4/getUserInfo"],
+    [1508375750, 321, 404, "get", "api/v3/getAccount"],
+    [1508562950, 23, 500, "post", "api/v2/bankcard"]
+  ],
+  "mobile": [
+    [1508325356, 123, 301, "get", "api/v4/getUserInfo"],
+    [1508375750, 321, 404, "get", "api/v3/getAccount"],
+    [1508562950, 23, 500, "post", "api/v2/bankcard"]
+  ],
+  "finace": [
+    [1508325356, 123, 301, "get", "api/v4/getUserInfo"],
+    [1508375750, 321, 404, "get", "api/v3/getAccount"],
+    [1508562950, 23, 500, "post", "api/v2/bankcard"]
+  ]
+}
