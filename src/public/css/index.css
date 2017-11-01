@@ -11,17 +11,21 @@ body {
 
 #wrapper {
     width: 100%;
+    position: relative;
 }
 
 footer {
-    position: fixed;
     text-align: center;
-    bottom: 30px;
     width: 100%;
-    left: 0;
+    overflow: hidden;
+    height: 50px;
+    line-height: 50px;
+    color: #fff;
+    margin-top: 50px;
 }
 
 #page-wrapper {
+    overflow: hidden;
     padding: 15px 15px;
     background: #f1f4f8;
     margin: 0 0 0 230px;
@@ -37,7 +41,7 @@ footer {
 #page-inner {
     width: 100%;
     background-color: transparent;
-    padding: 15px 30px;
+    padding: 15px 15px;
     min-height: 1200px;
 }
 

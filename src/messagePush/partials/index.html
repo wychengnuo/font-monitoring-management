@@ -22,14 +22,17 @@
                         内容
                     </td>
                     <td>
-                        渠道
+                        平台
                     </td>
                     <td>
+                        渠道
+                    </td>
+                    <!-- <td>
                         定时开关
                     </td>
                     <td>
                         定时推送时间
-                    </td>
+                    </td> -->
                     <td>
                         编辑
                         <!-- <span class="confi btn btn-info" style="margin:0 10px">启用</span><span class="confir btn btn-warning" >停用</span><span class="del btn btn-danger" style="margin:0 10px">删除</span> -->
@@ -45,21 +48,30 @@
                         <form id="formdate">
                             <div>
                                 <span>用户类型：</span>
-                                <dl>
+                                <dl class="userType">
                                     <dd><input type="radio" checked name="userTypes" value="1" />&nbsp;全部</dd>
                                     <dd><input type="radio" name="userTypes" value="2" />&nbsp;部分</dd>
-                                    <dd><input type="radio" name="userTypes" value="3" />&nbsp;独立</dd>
+                                    <!--<dd><input type="radio" name="userTypes" value="3" />&nbsp;独立</dd>-->
                                 </dl>
                             </div>
                             <div>
                                 <span>内容：</span>
                                 <dl><textarea name="content" minlength="3" required="required"></textarea></dl>
                             </div>
+                            <div class="plant">
+                                <span>平台：</span>
+                                <dl>
+                                    <dd><input type="checkbox" name="plant" value="1"/> PC</dd>
+                                    <dd><input type="checkbox" name="plant" value="2"/> H5</dd>
+                                    <dd><input type="checkbox" name="plant" value="3"/> ANDROID</dd>
+                                    <dd><input type="checkbox" name="plant" value="4"/> IOS</dd>
+                                </dl>
+                            </div>
                             <div>
                                 <span>渠道：</span>
                                 <dl><input type="text" class="form-control" minlength="3" name="channl" placeholder="请输入渠道号" id="channl"/></dl>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <span>定时开关：</span>
                                 <dl>
                                     <dd><input type="radio" checked  name="timeSwitch" value="1" /> 是</dd>
@@ -69,37 +81,22 @@
                             <div>
                                 <span>推送时间：</span>
                                 <dl><input type="text" class="form-control" minlength="3" name="pushTime" placeholder="请输入定时推送时间" id="channl"/></dl>
-                            </div>
-                            <input type="hidden" value="false" name="isEnable" />
-                            <input type="reset" name="reset" style="display:none" />
+                            </div> -->
+                            <!--<input type="hidden" value="false" name="isEnable" />-->
+                            <!--<input type="reset" name="reset" style="display:none" />-->
                             <div>
-                                <button type="button" class="btn btn-success submit">确定</button>
-                                <button class="cancel btn btn-warning">取消</button>
+                                <a type="button" class="btn btn-success submit">确定</a>
+                                <a class="cancel btn btn-warning">取消</a>
                             </div>
                         </form>
                     </div>
                 </div>
                 <ul class="pagination pagination-sm" id='pageUl'>
                 </ul>
-            </div>
-            </div>
-            <!-- 模态框（Modal） -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        </div>
-                    </div>
+                <div class="zwsj" style="display:none">
+                    暂无数据
                 </div>
             </div>
-            <ul class="pagination pagination-sm" id='pageUl'>
-            </ul>
-            <div class="zwsj" style="display:none">
-                暂无数据
             </div>
         </div>
     </div>

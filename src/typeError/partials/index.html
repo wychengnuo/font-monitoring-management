@@ -2,27 +2,35 @@
     <script src="/js/bootstrap-paginator.js"></script>
     <script src="/typeError/index.js"></script>
     <style>
-        .ss {
+         .ss {
             padding: 30px;
         }
 
-        table,
-        th,
-        td {
+        table, th, td {
             text-align: center;
             vertical-align: middle !important;
         }
 
-        .title {
-            height: 40px;
-            line-height: 40px;
+        thead,.title {
+            height: 36px;
+            line-height: 36px;
             text-align: center;
             font-weight: bold;
-            background: #337ab7;
+            background: #3b99d9;
             color: #fff;
-            border-radius: 2px;
-            border: 1px solid #337ab7;
             position: relative;
+            font-size: 14px;
+            padding: 0;
+            margin: 0;
+        }
+        tr {
+            height: 36px;
+            line-height: 36px;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        td,th {
+            padding: 0 12px;
         }
 
         .ss a {
@@ -35,89 +43,25 @@
 
         .date {
             background: #fff;
-            padding: 10px;
+            overflow-y: auto;
         }
 
-        .date>table {
-            border: 1px solid #ddd !important;
-        }
 
         .pagination {
-            margin: 0;
+            margin: 10px 10px 0 0;
             float: right;
         }
     </style>
     <div class="header">
-        <h3 class="page-header">
+        <h3 class="page-header" onclick="test1()">
             页面报错详细信息展示
         </h3>
     </div>
     <div id="page-inner">
         <div class="row">
             <p class="title">类型介绍(type:错误类型，sMsg:错误信息，sUrl:错误页面url，sLine:错误代码行号，sColu:错误代码列号，eObj:错误信息详细描述)</p>
-            <div id="date" class='date panel'>
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>sMsg</th>
-                            <th>sUrl</th>
-                            <th>sLine</th>
-                            <th>sColu</th>
-                            <th>eObj</th>
-                        </tr>
-                    </thead>
-                    <tr>
-                        <td>ReferenceError</td>
-                        <td>Uncaught ReferenceError: fnThre is not defined</td>
-                        <td>file:///Users/zhangsam/font-monitoring/index.html</td>
-                        <td>17</td>
-                        <td>65</td>
-                        <td>ReferenceError: fnThre is not defined at HTMLInputElement.onclick (file:///Users/zhangsam/font-monitoring/index.html:17:65)</td>
-                    </tr>
-                    <tr>
-                        <td>Uncaught Error: Initialize failed: invalid dom.</td>
-                        <td>http://localhost:3001/js/echarts.js</td>
-                        <td>1406</td>
-                        <td>17</td>
-                        <td>Error: Initialize failed: invalid dom. at Object.echarts.init (http://localhost:3001/js/echarts.js:1406:23)
-                            at histograms (http://localhost:3001/js/index.js:16:27) at Object.success (http://localhost:3001/js/index.js:109:17)
-                            at i (http://localhost:3001/js/jquery.min.js:2:27983) at Object.fireWith [as resolveWith] (http://localhost:3001/js/jquery.min.js:2:28749)
-                            at A (http://localhost:3001/js/jquery.min.js:4:14203) at XMLHttpRequest.
-                            <anonymous> (http://localhost:3001/js/jquery.min.js:4:16491)</td>
-                    </tr>
-                    <tr>
-                        <td>Uncaught Error: Initialize failed: invalid dom.</td>
-                        <td>http://localhost:3001/js/echarts.js</td>
-                        <td>1406</td>
-                        <td>17</td>
-                        <td>Error: Initialize failed: invalid dom. at Object.echarts.init (http://localhost:3001/js/echarts.js:1406:23)
-                            at histograms (http://localhost:3001/js/index.js:16:27) at Object.success (http://localhost:3001/js/index.js:109:17)
-                            at i (http://localhost:3001/js/jquery.min.js:2:27983) at Object.fireWith [as resolveWith] (http://localhost:3001/js/jquery.min.js:2:28749)
-                            at A (http://localhost:3001/js/jquery.min.js:4:14203) at XMLHttpRequest.
-                            <anonymous> (http://localhost:3001/js/jquery.min.js:4:16491)</td>
-                    </tr>
-                    <tr>
-                        <td>Uncaught Error: Initialize failed: invalid dom.</td>
-                        <td>http://localhost:3001/js/echarts.js</td>
-                        <td>1406</td>
-                        <td>17</td>
-                        <td>Error: Initialize failed: invalid dom. at Object.echarts.init (http://localhost:3001/js/echarts.js:1406:23)
-                            at histograms (http://localhost:3001/js/index.js:16:27) at Object.success (http://localhost:3001/js/index.js:109:17)
-                            at i (http://localhost:3001/js/jquery.min.js:2:27983) at Object.fireWith [as resolveWith] (http://localhost:3001/js/jquery.min.js:2:28749)
-                            at A (http://localhost:3001/js/jquery.min.js:4:14203) at XMLHttpRequest.
-                            <anonymous> (http://localhost:3001/js/jquery.min.js:4:16491)</td>
-                    </tr>
-                    <tr>
-                        <td>Uncaught Error: Initialize failed: invalid dom.</td>
-                        <td>http://localhost:3001/js/echarts.js</td>
-                        <td>1406</td>
-                        <td>17</td>
-                        <td>Error: Initialize failed: invalid dom. at Object.echarts.init (http://localhost:3001/js/echarts.js:1406:23)
-                            at histograms (http://localhost:3001/js/index.js:16:27) at Object.success (http://localhost:3001/js/index.js:109:17)
-                            at i (http://localhost:3001/js/jquery.min.js:2:27983) at Object.fireWith [as resolveWith] (http://localhost:3001/js/jquery.min.js:2:28749)
-                            at A (http://localhost:3001/js/jquery.min.js:4:14203) at XMLHttpRequest.
-                            <anonymous> (http://localhost:3001/js/jquery.min.js:4:16491)</td>
-                    </tr>
+            <div id="date" class='date'>
+                <table class="table-hover">
                 </table>"
             </div>
             <ul class="pagination pagination-sm" id='pageUl'>
