@@ -21,7 +21,7 @@ $(function () {
                 getPlugList();
                 $('.zwsj').hide();
             } else {
-                $('.modal-body').html('失败');
+                $('.modal-body').html(data.msg);
                 $('.mask, .upload').hide();
                 $('#myModal').modal({
                     keyboard: true,
@@ -73,7 +73,7 @@ function getPlugList() {
                     tr += '<td>' + a.plugListName + '</td>';
                     tr += '<td>' + a.time + '</td>';
                     tr += '<td>' + a.describe + '</td>';
-                    tr += '<td><span class="update btn btn-success"><a href="/plugAndir/listInfo?name=' + a.plugListName + '"style="color:#fff;">编辑</a></span><span class="btn btn-danger" onclick="delPlug(\'' + a.plugListName + '\')" style="margin-left:10px">删除</span></td>';
+                    tr += '<td><span class="update btn btn-success"><a href="/plugAndir/listInfo?name=' + a.plugListName + '&id=' + a.id + '"style="color:#fff;">编辑</a></span><span class="btn btn-danger" onclick="delPlug(\'' + a.plugListName + '\',\'' + a.id + '\')" style="margin-left:10px">删除</span></td>';
                     tr += '</tr>';
                 });
                 $('table tbody').html(tr);
@@ -99,7 +99,7 @@ function getPlugList() {
     });
 }
 
-function delPlug(str) {
+function delPlug(str, id) {
     
     $.ajax({
         url: '/plugin/api/delPlug',
@@ -107,7 +107,8 @@ function delPlug(str) {
         type: 'POST',
         data: {
             name: getvl('account'),
-            plugName: str
+            plugName: str,
+            id: id
         },
         success: function (data) {
             console.log(data.msg);
