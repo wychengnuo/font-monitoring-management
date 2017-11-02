@@ -13,26 +13,16 @@ var ind = {
 
 function histograms_urlErr(ele) {
     var myChart = echarts.init(document.getElementById(ele));
-    // var indices = {
-    //     name: 0,
-    //     group: 1,
-    //     id: 16
-    // };
+    var groupCategories = [], groupColors = [], data;
+    var maxTime = moment().add(1, "d").format("YYYY-MM-DD");
+    var minTime = moment().subtract(6, "d").format("YYYY-MM-DD");
+
     var schema = [
         {name: 'date', index: 0, text: '触发时间'},
         {name: 'delay', index: 1, text: '响应时长'},
         {name: 'status', index: 2, text: 'HTTP状态码'},
         {name: 'api', index: 3, text: '请求地址'},
     ];
-// //生成一个schema中name index对应的obj
-//     var fieldIndices = schema.reduce(function (obj, item) {
-//         obj[item.name] = item.index;
-//         return obj;
-//     }, {});
-
-    var groupCategories = [];
-    var groupColors = [];
-    var data;
 
 // zlevel 为 1 的层开启尾迹特效
     myChart.getZr().configLayer(1, {
@@ -40,21 +30,23 @@ function histograms_urlErr(ele) {
     })
 
     $.get('/js/networktest1.json', function (originData) {
-        data = normalizeData(originData.web);
-        myChart.setOption(getOption(data));
+        data = originData;
+        var init_data = normalizeData(originData.website);
+        myChart.setOption(getOption(init_data));
     });
 
-
     function normalizeData(originData) {
-
+        // console.log(originData)
         var groupMap = {};
         //将json文件的name赋值1存入groupmap
-        originData.forEach(function (row) {
-            var groupName = row[2];
-            if (!groupMap.hasOwnProperty(groupName)) {
-                groupMap[groupName] = 1;
-            }
-        });
+        for(var key in originData){
+            originData[key].forEach(function (row) {
+                var groupName = row[2];
+                if (!groupMap.hasOwnProperty(groupName)) {
+                    groupMap[groupName] = 1;
+                }
+            });
+        }
         //将groupname推入数组
         for (var groupName in groupMap) {
             if (groupMap.hasOwnProperty(groupName)) {
@@ -62,63 +54,82 @@ function histograms_urlErr(ele) {
             }
         }
         for (var i = 0; i < groupCategories.length; i++) {
-            groupColors.push( 0.1 * i);
+            groupColors.push( 0.85 - 0.07 * i);
         }
-
+// console.log(groupColors)
         return originData;
     }
 
     function tooltipFormatter(params) {
+        // console.log(params, 'params')
         // Remove duplicate by data name.
-        var mapByDataName = {};
-        var mapOnDim = {x: {}, y: {}, xy: {}};
-        echarts.util.each(params, function (item) {
-            var data = item.data;
-            var dataName = data[3];
-            var mapItem = mapByDataName[dataName] || (mapByDataName[dataName] = {});
-            mapItem[data[4]] = data[0];
-            mapItem[data[5]] = data[1];
-            mapOnDim[item.axisDim][dataName] = mapItem;
-        });
-        echarts.util.each(mapByDataName, function (mapItem, dataName) {
-            if (mapOnDim.x[dataName] && mapOnDim.y[dataName]) {
-                mapOnDim.xy[dataName] = mapItem;
-                delete mapOnDim.x[dataName];
-                delete mapOnDim.y[dataName];
-            }
-        });
-        var resultHTML = [];
-        echarts.util.each([['xy', 'CROSS'], ['x', 'V LINE'], ['y', 'H LINE']], function (dimDefine) {
-            var html = [];
-            echarts.util.each(mapOnDim[dimDefine[0]], function (mapItem, dataName) {
-                var valuesHTML = [];
-                echarts.util.each(mapItem, function (value, dataName) {
-                    valuesHTML.push(
-                        '<span style="color:#FFFFFF">'
-                        + dataName
-                        + '</span>: ' + value
-                    );
-                });
-                html.push('<div style="margin: 10px 0">' + dataName + '<br/>' + valuesHTML.join('<br/>') + '</div>');
-            });
-            html.length && resultHTML.push(
-                '<div style="margin: 10px 0">'
-                + '<div style="font-size: 16px; color: #aaa">POINTS ON ' + dimDefine[1] + '</div>'
-                + html.join('')
-                + '</div>'
-            );
-        });
-        return resultHTML.join('');
+        // var mapByDataName = {};
+        // var mapOnDim = {x: {}, y: {}, xy: {}};
+        // echarts.util.each(params, function (item) {
+        //     var data = item.data;
+        //     var dataName = data[3];
+        //     var mapItem = mapByDataName[dataName] || (mapByDataName[dataName] = {});
+        //     mapItem[data[4]] = data[0];
+        //     mapItem[data[5]] = data[1];
+        //     mapOnDim[item.axisDim][dataName] = mapItem;
+        // });
+        // echarts.util.each(mapByDataName, function (mapItem, dataName) {
+        //     if (mapOnDim.x[dataName] && mapOnDim.y[dataName]) {
+        //         mapOnDim.xy[dataName] = mapItem;
+        //         delete mapOnDim.x[dataName];
+        //         delete mapOnDim.y[dataName];
+        //     }
+        // });
+        // var resultHTML = [];
+        // echarts.util.each([['xy', 'CROSS'], ['x', 'V LINE'], ['y', 'H LINE']], function (dimDefine) {
+        //     var html = [];
+        //     echarts.util.each(mapOnDim[dimDefine[0]], function (mapItem, dataName) {
+        //         var valuesHTML = [];
+        //         echarts.util.each(mapItem, function (value, dataName) {
+        //             valuesHTML.push(
+        //                 '<span style="color:#FFFFFF">'
+        //                 + dataName
+        //                 + '</span>: ' + value
+        //             );
+        //         });
+        //         html.push('<div style="margin: 10px 0">' + dataName + '<br/>' + valuesHTML.join('<br/>') + '</div>');
+        //     });
+        //     html.length && resultHTML.push(
+        //         '<div style="margin: 10px 0">'
+        //         + '<div style="font-size: 16px; color: #aaa">POINTS ON ' + dimDefine[1] + '</div>'
+        //         + html.join('')
+        //         + '</div>'
+        //     );
+        // });
+        // return resultHTML.join('');
     }
 
     function getOption(data) {
-
         return {
-            backgroundColor: '#2c343c',
+            color: [
+                '#dd4444', '#80F1BE'
+            ],
+            legend: {
+                y: 'top',
+                data: ['get', 'post']
+            },
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
-                    axis: 'x'
+                    type:'line',
+                    snap:false,
+                    label: {
+                        show: true,
+                        margin: 6,
+                        backgroundColor: '#556',
+                        textStyle: {
+                            color: '#fff'
+                        },
+                        formatter: function (a) {
+                            // console.log(a,'aaaaaa')
+                            return moment(a.value).format("MM/DD HH:mm:ss")
+                        }
+                    }
                 },
                 padding: [10, 20, 10, 20],
                 backgroundColor: 'rgba(44,52,60,0.7)',
@@ -139,95 +150,65 @@ function histograms_urlErr(ele) {
                 formatter: tooltipFormatter
             },
             axisPointer: {
-                show: true,
-                snap: true,
                 lineStyle: {
                     type: 'dashed'
                 },
-                label: {
-                    show: true,
-                    margin: 6,
-                    backgroundColor: '#556',
-                    textStyle: {
-                        color: '#fff'
-                    }
-                }
             },
             xAxis: {
-                name: 'protein',
+                name: 'date',
+                type: 'time',
+                max: moment(maxTime).unix()*1000,
+                min: moment(minTime).unix()*1000,
                 splitLine: {show: false},
-                axisLine: {
-                    lineStyle: {
-                        color: '#fff'
-                    }
-                },
-                axisLabel: {
-                    textStyle: {
-                        color: '#fff'
-                    }
-                },
-                axisTick: {
-                    lineStyle: {
-                        color: '#fff'
-                    }
-                }
+                splitNumber: 7,
             },
             yAxis: {
-                name: 'calcium',
+                name: 'network-delay',
                 splitLine: {show: false},
-                axisLine: {
-                    lineStyle: {
-                        color: '#fff'
-                    }
-                },
-                axisLabel: {
-                    textStyle: {
-                        color: '#fff'
-                    }
-                },
-                axisTick: {
-                    lineStyle: {
-                        color: '#fff'
-                    }
-                }
             },
             visualMap: [{
-                show: false,
+                show: true,
                 type: 'piecewise',
                 categories: groupCategories,
                 dimension: 2,
                 inRange: {
-                    color: groupColors //['#d94e5d','#eac736','#50a3ba']
+                    symbolSize: 15,
+                    colorLightness: groupColors //['#d94e5d','#eac736','#50a3ba']
                 },
                 outOfRange: {
+                    symbolSize: 15,
                     color: ['#ccc'] //['#d94e5d','#eac736','#50a3ba']
                 },
                 top: 20,
                 textStyle: {
-                    color: '#fff'
+                    color: '#000'
                 },
                 realtime: false
-            }, {
-                show: false,
-                dimension: 3,
-                max: 1000,
-                inRange: {
-                    colorLightness: [0.15, 0.6]
-                }
             }],
             series: [
                 {
                     zlevel: 1,
-                    name: 'nutrients',
+                    name: 'get',
                     type: 'scatter',
                     itemStyle: {
                         emphasis: {
-                            color: '#fff'
+                            colorLightness: 0.9
                         }
                     },
-                    data: data.map(function (item, idx) {
-                        return [item[2], item[3], item[1], idx];
-                    }),
+                    data: data.get,
+                    animationThreshold: 5000,
+                    progressiveThreshold: 5000
+                },
+                {
+                    zlevel: 1,
+                    name: 'post',
+                    type: 'scatter',
+                    itemStyle: {
+                        emphasis: {
+                            colorLightness: 0.9
+                        },
+                    },
+                    data: data.post,
                     animationThreshold: 5000,
                     progressiveThreshold: 5000
                 }
@@ -238,44 +219,94 @@ function histograms_urlErr(ele) {
     }
 
     $('.channel select').change(function(){
-
-        if (data) {
-            myChart.setOption({
-                xAxis: {
-                    name: app.config.xAxis
+        var key = $('.channel select').val();
+        myChart.setOption({
+            series: [
+                {
+                    zlevel: 1,
+                    name: 'get',
+                    type: 'scatter',
+                    itemStyle: {
+                        emphasis: {
+                            colorLightness: 0.9
+                        },
+                    },
+                    data: data[key].get,
+                    animationThreshold: 5000,
+                    progressiveThreshold: 5000
                 },
-                yAxis: {
-                    name: app.config.yAxis
-                },
-                series: {
-                    data: data.map(function (item, idx) {
-                        return [
-                            item[fieldIndices[app.config.xAxis]],
-                            item[fieldIndices[app.config.yAxis]],
-                            item[1],
-                            idx
-                        ];
-                    })
+                {
+                    zlevel: 1,
+                    name: 'post',
+                    type: 'scatter',
+                    itemStyle: {
+                        emphasis: {
+                            colorLightness: 0.9
+                        },
+                    },
+                    data: data[key].post,
+                    animationThreshold: 5000,
+                    progressiveThreshold: 5000
                 }
-            });
-        }
+            ],
+        });
     })
 
 }
 
-function histograms_typeErr(ele) {
+function histograms_typeErr(ele, d) {
+    var obj = {
+        legend: [],
+        series: [],
+        xaxis: []
+    };
+    var item_pie;
+    for (var key in d) {
+        if (key != 'pieData'){
+            var item = {
+                name: key,
+                type: 'bar',
+                stack: '总量',
+                cursor: 'auto',
+                data: d[key]
+            }
+            obj.legend.push(key);
+            obj.series.push(item);
+        }else{
+            item_pie = {
+                name: '访问来源',
+                type: 'pie',
+                radius: '70%',
+                center: ['25%', 150],
+                cursor: 'auto',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{b} : {c} ({d}%)"
+                },
+                data: d[key]
+            }
+        }
+    }
+    if(item_pie){
+        obj.series.push(item_pie);
+    }
+    for(var i = 6; i >= 0; i--){
+        obj.xaxis.push(moment().subtract(i, 'd').format('YYYY/MM/DD'));
+    }
+
     var option = {
         tooltip: {},
         legend: {
             orient: 'vertical',
             x: 'left',
-            data: ['SyntaxError', 'ReferenceError', 'RangeError', 'TypeError', 'URIError', 'EvalError']
+            data: obj.legend
         },
         calculable: true,
         xAxis: [
             {
                 type: 'category',
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                data: obj.xaxis
+                // data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
             }
         ],
         yAxis: [
@@ -300,69 +331,7 @@ function histograms_typeErr(ele) {
                 }
             },
         },
-        series: [
-            {
-                name: 'SyntaxError',
-                type: 'bar',
-                stack: '总量',
-                cursor: 'auto',
-                data: [320, 332, 301, 334, 390, 330, 320]
-            },
-            {
-                name: 'ReferenceError',
-                type: 'bar',
-                stack: '总量',
-                cursor: 'auto',
-                data: [120, 132, 101, 134, 90, 230, 210]
-            },
-            {
-                name: 'RangeError',
-                type: 'bar',
-                stack: '总量',
-                cursor: 'auto',
-                data: [220, 182, 191, 234, 290, 330, 310]
-            },
-            {
-                name: 'TypeError',
-                type: 'bar',
-                stack: '总量',
-                cursor: 'auto',
-                data: [150, 232, 201, 154, 190, 330, 410]
-            },
-            {
-                name: 'URIError',
-                type: 'bar',
-                stack: '总量',
-                cursor: 'auto',
-                data: [150, 232, 201, 154, 190, 330, 410]
-            },
-            {
-                name: 'EvalError',
-                type: 'bar',
-                stack: '总量',
-                cursor: 'auto',
-                data: [820, 932, 901, 934, 1290, 1330, 1320]
-            },
-            {
-                name: '访问来源',
-                type: 'pie',
-                radius: '70%',
-                center: ['25%', 150],
-                cursor: 'auto',
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{b} : {c} ({d}%)"
-                },
-                data: [
-                    {value: 335, name: 'SyntaxError'},
-                    {value: 310, name: 'ReferenceError'},
-                    {value: 234, name: 'RangeError'},
-                    {value: 135, name: 'TypeError'},
-                    {value: 100, name: 'URIError'},
-                    {value: 1548, name: 'EvalError'},
-                ]
-            },
-        ],
+        series: obj.series
     };
     var myChart = echarts.init(document.getElementById(ele), 'macarons');
     myChart.setOption(option);
@@ -412,22 +381,15 @@ function histograms(ele, arr, arr1, str) {
 }
 
 $(function () {
-
+//typeErr 接口请求方法
     $.ajax({
         url: '/plugin/api/typeErr',
         type: 'GET',
         data: '',
         dataType: 'json',
-        success: function (data) {
-            if (data.success) {
-                var d = data.data;
-                var arr = [], arr1 = [];
-                for (var i = 0; i < d.length; i++) {
-                    arr.push(d[i].name);
-                    arr1.push(d[i].y);
-                }
-                // histograms_typeErr('container_html', arr, arr1);
-                histograms_typeErr('container_html', arr, arr1);
+        success: function (body) {
+            if (body.success) {
+                histograms_typeErr('container_html', body.data);
             }
         },
         error: function (err) {
