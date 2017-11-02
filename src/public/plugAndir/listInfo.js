@@ -36,6 +36,7 @@ function getPlugList() {
         type: 'GET',
         data: {
             category: getvl('name'),
+            id: getvl('id'),
             page: pages,
             pageSize: '10'
         },
