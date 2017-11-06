@@ -25,7 +25,7 @@ var message = {
 
                     $.each(d, function (i, o) {
                         var a = o;
-                        var userTypes = '';
+                        var userTypes = '', time = new Date(a.createdAt);
                         switch (a.uerTypes) {
                             case '1':
                                 userTypes = '全部用户';
@@ -37,15 +37,15 @@ var message = {
                                 userTypes = '独立用户';
                                 break;
                         }
-                        if (a.isEnable == 'true') {
-                            str = '<span class="confir btn btn-warning" onclick="setting(2,' + i + ')">停用</span>';
+                        if (a.isEnable == true) {
+                            str = '<span class="confir btn btn-warning" onclick="setting(2,' + a.id + ')">停用</span>';
                         } else {
-                            str = '<span onclick="setting(1,' + i + ')" class="confi btn btn-info">启用</span>';
+                            str = '<span onclick="setting(1,' + a.id + ')" class="confi btn btn-info">启用</span>';
                         }
-                        str = str + '<span class="del btn btn-danger" onclick="setting(3,' + i + ')"  style="margin:0 10px">删除</span>';
+                        str = str + '<span class="del btn btn-danger" onclick="setting(3,' + a.id + ')"  style="margin:0 10px">删除</span>';
                         tr += '<tr>';
                         tr += '<td>' + userTypes + '</td>';
-                        tr += '<td>' + a.time + '</td>';
+                        tr += '<td>' + time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + '</td>';
                         tr += '<td>' + a.content + '</td>';
                         tr += '<td>' + getPlant(a.plant).join(',') + '</td>';
                         tr += '<td>' + a.channl + '</td>';
@@ -170,7 +170,7 @@ $(function () {
     message.init();
 });
 
-function setting(num, id) {
+function setting(type, id) {
     // if (num != '3') {
     //     socketio(order);
     // }
@@ -179,11 +179,10 @@ function setting(num, id) {
         dataType: 'json',
         type: 'POST',
         data: {
-            num: num,
+            num: type,
             id: id
         },
         success: function (data) {
-            console.log(data.msg);
             message.getData();
         },
         error: function (data) {
