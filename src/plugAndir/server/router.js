@@ -34,6 +34,14 @@ router
             path: 'http://' + (host || (eth0[0].address + ':3002')) + '/plugin/api/setPlugListInfo'
         };
         await next();
+    }).get('/plugAndir/plugDownList', async (ctx, next) => {
+        ctx.locals = {
+            isTrue: true,
+            plugDownTitle: true,
+            data: '插件下载统计',
+            path: 'http://' + (host || (eth0[0].address + ':3002')) + '/plugin/api/getPlugDownList'
+        };
+        await next();
     });
 
 module.exports = () => compose([
