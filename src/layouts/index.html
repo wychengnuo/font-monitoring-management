@@ -109,7 +109,6 @@
                         {{/if}}
                         <i class="fa fa-desktop"></i> Type Error</a>
                     </li>
-
                     <li>
                         {{#if data.netTitle}}
                         <a href="/netError" class="active-menu"><span class="fa arrow"></span>
@@ -125,6 +124,14 @@
                             <a href="/plugAndir">
                         {{/if}}
                         <i class="fa fa-android"></i>Plug-in For Android</a>
+                    </li>
+                    <li>
+                        {{#if data.plugDownTitle}}
+                        <a href="/plugAndir/plugDownList" class="active-menu"><span class="fa arrow"></span>
+                            {{else}}
+                            <a href="/plugAndir/plugDownList">
+                                {{/if}}
+                                <i class="fa fa-download"></i>Plug DownLoad</a>
                     </li>
                     <li>
                         {{#if data.messagePushTitle}}

@@ -320,3 +320,17 @@ dl {
     margin: 0 6px 0 0;
     position: initial;
 }
+
+.plugDownList table thead {
+    background: #3b99d9;
+    color: #fff;
+}
+.plugDownList table thead tr td {
+    border: none;
+}
+.plugDownList table {
+    background: #fff;
+}
+.pagination {
+    float: right;
+}
