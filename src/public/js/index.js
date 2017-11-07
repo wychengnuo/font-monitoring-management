@@ -406,11 +406,11 @@ function world_cloud(ele) {
                 },
                 {
                     name: "Il n’y a pas de données",
-                    value: 4055,
+                    value: 2455,
                 },
                 {
                     name: "데이터 가 없다",
-                    value: 2467,
+                    value: 2767,
                 },
                 {
                     name: "Нет данных",
@@ -438,11 +438,11 @@ function world_cloud(ele) {
                 },
                 {
                     name: "Nessun dato",
-                    value: 582,
+                    value: 782,
                 },
                 {
                     name: "Lewis Hamilton",
-                    value: 555,
+                    value: 655,
                 },
                 {
                     name: "Geen gegevens",
