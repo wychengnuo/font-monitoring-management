@@ -47,7 +47,7 @@ var message = {
                         tr += '<td>' + userTypes + '</td>';
                         tr += '<td>' + time.getFullYear() + '-' + (time.getMonth() + 1) + '-' + time.getDate() + ' ' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + '</td>';
                         tr += '<td>' + a.content + '</td>';
-                        tr += '<td>' + getPlant(a.plant).join(',') + '</td>';
+                        tr += '<td>' + a.plant + '</td>';
                         tr += '<td>' + a.channl + '</td>';
                         // tr += '<td>' + a.timeSwitch + '</td>';
                         // tr += '<td>' + a.pushTime + '</td>';
@@ -224,24 +224,4 @@ function socketio(order) {
         //     })
         // }
     });
-}
-function getPlant(id) {
-    var plant, plantList = [];
-    if (id) {
-        id = id.split(',');
-        for (var i = 0; i < id.length; i++) {
-            switch(id[i]) {
-                case '1':
-                    plant = 'PC'; break;
-                case '2':
-                    plant = 'H5'; break;
-                case '3':
-                    plant = 'ANDROID'; break;
-                case '4':
-                    plant = 'IOS'; break;
-            }
-            plantList.push(plant)
-        }
-    }
-    return plantList;
 }

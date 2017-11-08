@@ -4,9 +4,38 @@ var plugDown = {
 	total: 0,
 	init: function () {
 		var _this = this;
+		_this.getSearchData();
 		_this.getData();
 	},
-	getData: function () {
+	getSearchData: function () {
+		var channelList = [], nameList = [], versionList = [];
+		$.ajax({
+			url: '/plugin/api/getPlugSearch',
+			type: 'GET',
+			dataType: 'json',
+			success: function (data) {
+				if (data.success) {
+					var data = data.data;
+
+					$.each(data.channelList, function (i, e) {
+						channelList.push('<option value="' + e.channel + '">' + e.channel + '</option>');
+					})
+
+					$.each(data.nameList, function (i, e) {
+						nameList.push('<option value="' + e.name + '">' + e.name + '</option>')
+					})
+
+					$.each(data.versionList, function (i, e) {
+						versionList.push('<option value="' + e.version + '">' + e.version + '</option>')
+					})
+					$('#plugChannel').html('<option value="">请选择</option>').append(channelList.join(''));
+					$('#plugName').html('<option value="">请选择</option>').append(nameList.join(''));
+					$('#plugVersion').html('<option value="">请选择</option>').append(versionList.join(''));
+				}
+			}
+		})
+	},
+	getData: function (channel, name, version) {
 		var tr = '';
 		var str = '';
 		var _this = this;
@@ -15,18 +44,23 @@ var plugDown = {
 			url: '/plugin/api/getPlugDownList',
 			type: 'GET',
 			data: {
+				channel: channel,
+				name: name,
+				version: version,
 				page: pages,
 				pageSize: _this.pageSize
 			},
 			dataType: 'json',
 			success: function (data) {
-				if (data.success && data.data.length > 0) {
-					var d = data.data;
+				if (data.success && data.data.list.length > 0) {
+					var d = data.data.list;
 
 					$.each(d, function (i, o) {
 						var a = o;
 						tr += '<tr>';
 						tr += '<td>' + a.name + '</td>';
+						tr += '<td>' + a.plugName + '</td>';
+						tr += '<td>' + a.plugVersion + '</td>';
 						tr += '<td>' + a.sum + '</td>';
 						tr += '<td>' + a.mobileModel + '</td>';
 						tr += '<td>' + a.mobileVersion + '</td>';
@@ -38,7 +72,7 @@ var plugDown = {
 					});
 					$('table tbody').html(tr);
 
-					_this.total = data.pageSize; //取到pageCount的值
+					_this.total = data.data.totalCount; //取到pageCount的值
 
 					if (pages == 1) {
 						var options = {
@@ -89,4 +123,12 @@ var plugDown = {
 $(function () {
 	// 获取插件下载量
 	plugDown.init();
+
+	$('#plugChannel, #plugName, #plugVersion').change(function () {
+		var plugChannel = $('#plugChannel').val() || '';
+		var plugName = $('#plugName').val() || '';
+		var plugVersion = $('#plugVersion').val() || '';
+
+		plugDown.getData(plugChannel, plugName, plugVersion);
+	})
 });
