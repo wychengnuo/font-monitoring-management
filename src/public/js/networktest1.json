@@ -1,38 +1,40 @@
 {
   "website":{
-    "get":[
-      [1509612621000, 123, 401, "get", "api/v4/getUserInfo"],
-      [1509511821000, 321, 404, "get", "api/v3/getAccount"],
-      [1509303021000, 23, 500, "get", "api/v2/bankcard"]
+    "GET":[
+      [1509611921000, 123, 401, "GET", "api/v4/getUserInfo"],
+      [1509513821000, 321, 404, "GET", "api/v3/getAccount"],
+      [1509303021000, 23, 500, "GET", "api/v2/bankcard"]
     ],
-    "post":[
-      [1509303021000, 123, 401, "get", "api/v4/getUserInfo"],
-      [1509612621000, 321, 404, "get", "api/v3/getAccount"],
-      [1509511821000, 23, 500, "get", "api/v2/bankcard"]
+    "POST":[
+      [1509303021000, 123, 401, "POST", "api/v4/getUserInfo"],
+      [1509611921000, 321, 404, "POST", "api/v3/getAccount"],
+      [1509513821000, 23, 500, "POST", "api/v2/bankcard"]
     ]
   },
   "mobile": {
-    "get":[
-      [1509612621000, 123, 301, "get", "api/v4/getUserInfo"],
-      [1509511821000, 321, 404, "get", "api/v3/getAccount"],
-      [1509204221000, 23, 500, "get", "api/v2/bankcard"]
+    "GET":[
+      [1509512621000, 123, 301, "GET", "api/v4/getUserInfo"],
+      [1509405621000, 321, 404, "GET", "api/v3/getAccount"],
+      [1509204221000, 23, 500, "GET", "api/v2/bankcard"]
     ],
-    "post":[
-      [1509079421000, 123, 301, "get", "api/v4/getUserInfo"],
-      [1509202221000, 321, 404, "get", "api/v3/getAccount"],
-      [1509059421000, 23, 500, "get", "api/v2/bankcard"]
+    "POST":[
+      [1509679421000, 123, 301, "POST", "api/v4/getUserInfo"],
+      [1509502221000, 321, 404, "POST", "api/v3/getAccount"],
+      [1509659421000, 23, 500, "POST", "api/v2/bankcard"]
     ]
   },
   "finance": {
-    "get":[
-      [1509612621000, 123, 301, "get", "api/v4/getUserInfo"],
-      [1509202221000, 321, 404, "get", "api/v3/getAccount"],
-      [1509089421000, 23, 500, "get", "api/v2/bankcard"]
+    "GET":[
+      [1509612621000, 123, 301, "GET", "api/v4/getUserInfo"],
+      [1509592621000, 223, 401, "GET", "api/v4/getUserInfo"],
+      [1509202221000, 321, 404, "GET", "api/v3/getAccount"],
+      [1509389421000, 23, 500, "GET", "api/v2/bankcard"]
     ],
-    "post":[
-      [1509039421000, 123, 301, "get", "api/v4/getUserInfo"],
-      [1509511821000, 321, 404, "get", "api/v3/getAccount"],
-      [1509202221000, 23, 500, "get", "api/v2/bankcard"]
+    "POST":[
+      [1509639421000, 123, 301, "POST", "api/v4/getUserInfo"],
+      [1509412621000, 83, 401, "POST", "api/v4/getUserInfo"],
+      [1509511821000, 321, 404, "POST", "api/v3/getAccount"],
+      [1509202221000, 23, 500, "POST", "api/v2/bankcard"]
     ]
   }
 }

@@ -32,7 +32,7 @@ var ind = {
                             td = '', td1 = '';
                             for (var e in d) {
                                 td += '<th>' + e + '</th>';
-                                td1 += '<td>' + d[e] + '</td>';
+                                td1 += '<td><div>' + d[e] + '</div></td>';
                             }
                         }
                         tr = '<thead><tr>' + td + '</tr></thead>';

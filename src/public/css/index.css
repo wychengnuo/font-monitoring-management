@@ -848,3 +848,15 @@ ul.dropdown-menu.dropdown-messages li a div {
 .navbar-right {
     margin-right: 0;
 }
+.url-channel{
+    width:180px;
+    position:absolute;
+    right:50px;
+    top:10px;
+    z-index:1000;
+    border:1px solid #ced2e7;
+    border-radius:3px;
+    font-size:14px;
+    padding-left:3px;
+    display: none;
+}

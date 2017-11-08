@@ -1,5 +1,6 @@
 <div id="page-wrapper">
     <script src="/js/echarts-all-3.js"></script>
+    <script src="/js/echarts-wordcloud.min.js"></script>
     <script src="/js/moment.js"></script>
     <script src="/js/macarons.js"></script>
     <script src="/js/index.js"></script>
@@ -36,18 +37,16 @@
                         </div>
                     </div>
                     <div class="panel-body" id="container_interface" style="width:100%;height:350px;position: relative;"></div>
-                    <div class="channel" style="width:245px;position:absolute;right:5px;top:0px;z-index:1000;">
-                        <ul>
-                            <li class="cr string">
-                                <div><span class="property-name">xAxis</span>
-                                    <div class="c"><select>
-                                        <option value="website">美易理财-website</option>
-                                        <option value="mobile">美易理财-mobile</option>
-                                        <option value="finance">国美金融-官网</option>
-                                    </select></div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="url-channel">
+                        <span class="property-name" style="font-size:13px">统计来源:</span>
+                        <div class="c" style="display: inline-block;">
+                            <select style="outline:none;border:0;background-color:#FFFFFF">
+                                <option value="website">美易理财-PC</option>
+                                <option value="mobile">美易理财-H5</option>
+                                <option value="finance">国美金融-官网</option>
+                                <option value="management">管理后台</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
