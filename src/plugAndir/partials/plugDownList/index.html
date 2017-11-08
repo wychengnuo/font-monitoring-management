@@ -7,11 +7,36 @@
         </h3>
     </div>
     <div id="page-inner">
+        <br/>
+        <div class="row">
+            <div class="col-md-4">
+                <label class="col-md-5">插件渠道</label>
+                <select class="form-control col-md-7" id="plugChannel">
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="col-md-5">插件名称</label>
+                <select class="form-control col-md-7" id="plugName">
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="col-md-5">插件版本</label>
+                <select class="form-control col-md-7" id="plugVersion">
+                </select>
+            </div>
+        </div>
+        <br/>
         <div class="plugDownList">
             <table class="table table-bordered table-hover">
                 <thead>
                 <td>
+                    渠道
+                </td>
+                <td>
                     插件名称
+                </td>
+                <td>
+                    插件版本
                 </td>
                 <td>
                     下载数量
@@ -40,7 +65,7 @@
             </table>
                 <ul class="pagination pagination-sm" id='pageUl'>
                 </ul>
-                <div class="zwsj" style="display:none">
+                <div class="zwsj" style="display:none; text-align: center;">
                     暂无数据
                 </div>
             </div>

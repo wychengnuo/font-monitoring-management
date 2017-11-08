@@ -328,9 +328,27 @@ dl {
 .plugDownList table thead tr td {
     border: none;
 }
+
 .plugDownList table {
     background: #fff;
 }
+
 .pagination {
     float: right;
+}
+
+.plugSearch {
+    margin: 20px 0;
+    overflow: hidden;
+    border: 1px #000 solid;
+}
+
+.row label {
+    margin-top: 5px;
+    max-width: 100px;
+}
+
+.row select {
+    display: inline-block;
+    max-width: 120px;
 }
