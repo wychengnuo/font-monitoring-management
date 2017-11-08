@@ -12,9 +12,9 @@ app.use(proxy({
     proxy_rules: [
         {
             proxy_location: /plugin/,
-            // proxy_pass: 'http://127.0.0.1:3002',
+            proxy_pass: 'http://127.0.0.1:3002',
             // proxy_pass: 'http://10.134.94.146:3002',//chenze
-            proxy_pass: 'http://10.134.94.43:3002',//wangyan
+            // proxy_pass: 'http://10.134.94.43:3002',//wangyan
             proxy_micro_service: false,
             proxy_merge_mode: false
         }
