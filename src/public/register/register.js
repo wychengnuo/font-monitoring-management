@@ -8,7 +8,7 @@ $(document).ready(function () {
             $.ajax({
                 url: '/plugin/api/register',
                 type: 'POST',
-                data: { username: $('.username').val(), nickname: $('.nickname').val(), password: $('.password').val() },
+                data: { username: $('.username').val(), nickname: $('.nickname').val(), password: $('.password').val(), department: $('.department').val() },
                 dataType: 'json',
                 success: function (data) {
                     if (data.success) {
@@ -16,7 +16,7 @@ $(document).ready(function () {
                         localStorage.removeItem('data');
                         window.location.href = '/index';
                     } else {
-                        console.log(data.msg);
+                        alert(data.msg);
                     }
                 },
                 error: function (err) { 
