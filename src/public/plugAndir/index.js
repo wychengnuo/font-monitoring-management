@@ -59,7 +59,7 @@ function getPlug() {
                     if (a.name) {
                         li += '<li class="li">';
                         // li += '<i class="fa fa-close" aria-hidden="true"></i>';
-                        li += '<img src="/plugAndir/logo.jpg" />';
+                        li += '<img src="/plugAndir/logo.png" />';
                         li += '    <span>' + a.name + '</span>';
                         li += '    <span class="s1">' + a.version + '</span>';
                         li += '   <div>';
