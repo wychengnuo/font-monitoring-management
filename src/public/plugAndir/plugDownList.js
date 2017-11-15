@@ -8,7 +8,7 @@ var plugDown = {
 		_this.getData();
 	},
 	getSearchData: function () {
-		var channelList = [], nameList = [], versionList = [];
+		var channelList = [], nameList = [], versionList = [], modelList = [];
 		$.ajax({
 			url: '/plugin/api/getPlugSearch',
 			type: 'GET',
@@ -22,24 +22,29 @@ var plugDown = {
 					})
 
 					$.each(data.nameList, function (i, e) {
-						nameList.push('<option value="' + e.name + '">' + e.name + '</option>')
+						nameList.push('<option value="' + e.name + '">' + e.name + '</option>');
 					})
 
 					$.each(data.versionList, function (i, e) {
-						versionList.push('<option value="' + e.version + '">' + e.version + '</option>')
+						versionList.push('<option value="' + e.version + '">' + e.version + '</option>');
+					})
+					$.each(data.modelList, function(i, e) {
+						modelList.push('<option value="' + e.mobileModel + '">' + e.mobileModel + '</option>');
 					})
 					$('#plugChannel').html('<option value="">请选择</option>').append(channelList.join(''));
 					$('#plugName').html('<option value="">请选择</option>').append(nameList.join(''));
 					$('#plugVersion').html('<option value="">请选择</option>').append(versionList.join(''));
+					$('#mobileModel').html('<option value="">请选择</option>').append(modelList.join(''));
 				}
 			}
 		})
 	},
-	getData: function (channel, name, version) {
+	getData: function (channel, name, version, mobileModel, page, pageSize) {
 		var tr = '';
 		var str = '';
 		var _this = this;
-		var pages = _this.page;
+		var pages = _this.page || page;
+		var pageSize = _this.pageSize || pageSize;
 		$.ajax({
 			url: '/plugin/api/getPlugDownList',
 			type: 'GET',
@@ -47,14 +52,14 @@ var plugDown = {
 				channel: channel,
 				name: name,
 				version: version,
+				mobileModel: mobileModel,
 				page: pages,
-				pageSize: _this.pageSize
+				pageSize: pageSize
 			},
 			dataType: 'json',
 			success: function (data) {
 				if (data.success && data.data.list.length > 0) {
 					var d = data.data.list;
-
 					$.each(d, function (i, o) {
 						var a = o;
 						tr += '<tr>';
@@ -96,7 +101,7 @@ var plugDown = {
 							},
 							onPageClicked: function (event, originalEvent, type, pages) {
 								_this.page = pages;
-								_this.getData();
+								_this.getData(channel, name, version, mobileModel);
 							}
 						};
 						$('#pageUl').show().bootstrapPaginator(options);
@@ -124,11 +129,14 @@ $(function () {
 	// 获取插件下载量
 	plugDown.init();
 
-	$('#plugChannel, #plugName, #plugVersion').change(function () {
+	$('#plugChannel, #plugName, #plugVersion, #mobileModel').change(function () {
 		var plugChannel = $('#plugChannel').val() || '';
 		var plugName = $('#plugName').val() || '';
 		var plugVersion = $('#plugVersion').val() || '';
+		var mobileModel = $('#mobileModel').val() || '';
+		var page = 1;
+		var pageSize = 10;
 
-		plugDown.getData(plugChannel, plugName, plugVersion);
+		plugDown.getData(plugChannel, plugName, plugVersion, mobileModel, page, pageSize);
 	})
 });
